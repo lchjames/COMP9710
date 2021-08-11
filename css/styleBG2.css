@@ -1,0 +1,61 @@
+/* Split the screen in half */
+.split {
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 70px;
+    overflow-x: hidden;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+    height: 100%;
+}
+
+/* Control the right side */
+.right {
+    right: 0;
+}
+
+.iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+a{
+    margin: 10px;
+    padding: 18px;
+}
+button {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.view, .collapsible:hover {
+    background-color: #555;
+}
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.view:after {
+    content: "\2212";
+}
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
