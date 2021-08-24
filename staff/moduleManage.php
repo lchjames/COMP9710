@@ -3,10 +3,10 @@ include '../topbar.php';
 include 'getModuleDetail.php';
 ?>
 <html>
-<!--        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="stylesheet" type="text/css" href="../css/styleBG2.css">
-        </head>-->
+    <!--        <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" type="text/css" href="../css/styleBG2.css">
+            </head>-->
     <body>
         <h1> Modules List</h1>
         <table>
@@ -79,5 +79,6 @@ include 'getModuleDetail.php';
     }
     ?>
 </table>
+<button onclick="window.location.href='upload.php'">Upload new Video/PDF</button>
 </body>
 </html>
