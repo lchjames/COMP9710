@@ -19,7 +19,7 @@ $repasswd = "";
         <div>
             <?php
             include 'DBConnect.php';
-            $sql = "SELECT * FROM `user_account` WHERE userID = " . $_SESSION["userid"] . "";
+            $sql = "SELECT * FROM `users` WHERE user_id = " . $_SESSION["userid"] . "";
             $result = $conn->query($sql);
             if ($conn->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -30,7 +30,7 @@ $repasswd = "";
                 <div>
                     <?php
                     echo "Username:" . $row['username'] . "<br>";
-                    echo "Email:" . $row['email'] . "<br>";
+                    echo "Email:" . $row['email_address'] . "<br>";
                     echo "Password:" . $row['password'];
                     ?>
                 </div>

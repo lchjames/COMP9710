@@ -1,5 +1,5 @@
 <?php
-$getActivity = "SELECT * FROM activities WHERE module = $moduleID";
+$getActivity = "SELECT * FROM activity WHERE module_id = $moduleID";
 $resultActivity = $conn->query($getActivity) or die(mysqli_error());
 ?>
 <button class="collapsible">Activity</button>

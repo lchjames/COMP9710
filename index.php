@@ -15,7 +15,6 @@
         <link rel="stylesheet" type="text/css" href="css/styleBG.css">
         <title>COMP9710</title>
     </head>
-    ，
     <body>
         <div class="container">
             <h1>Login an existing account</h1>

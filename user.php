@@ -1,8 +1,3 @@
-
-<!--<script>
-    sessionStorage.setItem('mechine_state', false);
-<?php echo $_SESSION['mechine_state']; ?>
-</script>-->
 <html>
     <?php
     include 'topbar.php';
@@ -23,7 +18,7 @@
             <?php
             include 'readModules.php';
             ?>
-        </div><!<!-- Left -->
+        </div><!-- Left -->
 
         <div class="split right">
             <iframe src="img/temp pic.png" width="100%" onload="resizeIframe(this)" >

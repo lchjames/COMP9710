@@ -65,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
       } */
     if ($allow_username_to_input == TRUE/* && $allow_passwd_to_input == TRUE */) {
         if (include 'DBConnect.php') {
-            $sql = "SELECT username FROM user_account WHERE username='$username'";
+            $sql = "SELECT username FROM users WHERE username='$username'";
             $result = $conn->query($sql);
             if ($result === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             } else if ($result->num_rows == 0) {
-                $sql = "INSERT INTO user_account (username, password, email, usertype) VALUES ('$username', '" . md5($passwd) . "','$email','user')";
+                $sql = "INSERT INTO users (username, password, email_address, user_id) VALUES ('$username', '" . md5($passwd) . "','$email','1')";
                 if ($conn->query($sql) === FALSE) {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
@@ -140,8 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
 
     if ($allow_username_to_input == TRUE && $allow_passwd_to_input == TRUE) {
         if (include 'DBConnect.php') {
-            echo md5($Lpasswd);
-            $sql = "SELECT * FROM user_account WHERE BINARY username like '$Lusername'&& BINARY password like '" . md5($Lpasswd) . "'";
+           echo md5($Lpasswd);
+            $sql = "SELECT * FROM users WHERE BINARY username like '$Lusername'&& BINARY password like '" . md5($Lpasswd) . "'";
             $result = $conn->query($sql);
             if ($result === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -156,8 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
                 $_SESSION["loggedin"] = true;
                 //$_SESSION["mechine_state"] = 1;
                 $_SESSION["username"] = $row ['username'];
-                $_SESSION["usertype"] = $row ['usertype'];
-                $_SESSION["userid"] = $row ['userID'];
+                $_SESSION["usertype"] = $row ['role_id'];
+                $_SESSION["userid"] = $row ['user_id'];
                 $sql = "UPDATE `user_account` SET `last_login` = NOW() WHERE `username` = '$Lusername'";
                 if ($conn->query($sql) === FALSE) {
                     echo "Error: " . $sql . "<br>" . $conn->error;

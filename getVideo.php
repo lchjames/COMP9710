@@ -1,5 +1,5 @@
 <?php
-$getVideo = "SELECT * FROM videos WHERE module = $moduleID";
+$getVideo = "SELECT * FROM video v, activity a WHERE v.activity_id = a.activity_id && a.module_id = $moduleID";
 $resultVideo = $conn->query($getVideo) or die(mysqli_error());
 ?>
 <button class="collapsible">Video</button>

@@ -1,5 +1,5 @@
 <?php
-$getDocument = "SELECT * FROM documents WHERE module = $moduleID";
+$getDocument = "SELECT * FROM document d, activity a WHERE d.activity_id = a.activity_id && a.module_id = $moduleID";
 $resultDocument = $conn->query($getDocument) or die(mysqli_error());
 ?>
 <button class="collapsible">Show PDF</button>
