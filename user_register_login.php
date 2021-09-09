@@ -81,15 +81,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
             $result = $conn->query($sql);
             $row = mysqli_fetch_array($result);
             // Store data in session variables
-            /*$_SESSION["loggedin"] = true;
-            $_SESSION["username"] = $row ['username'];
-            $_SESSION["usertype"] = $row ['usertype'];
-            $_SESSION["userid"] = $row ['userID'];*/
+            /* $_SESSION["loggedin"] = true;
+              $_SESSION["username"] = $row ['username'];
+              $_SESSION["usertype"] = $row ['usertype'];
+              $_SESSION["userid"] = $row ['userID']; */
             // Redirect user
-            /*if ($_SESSION["usertype"] == 'admin') {
-                header("location: admin.php");
-            } else
-                header("location: user.php");*/
+            /* if ($_SESSION["usertype"] == 'admin') {
+              header("location: admin.php");
+              } else
+              header("location: user.php"); */
         }
         /* if (include 'DBConnect.php') {
           $sql = "SELECT * FROM user_account WHERE username='$username'";
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
           }
           $conn->close(); */
     }
-} else if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_submit'])) {
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_submit'])) {
     if (empty($_POST["Lusername"])) {
         $LusernameErr = "Username is required";
         $allow_username_to_input = FALSE;
@@ -140,15 +140,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
 
     if ($allow_username_to_input == TRUE && $allow_passwd_to_input == TRUE) {
         if (include 'DBConnect.php') {
-           echo md5($Lpasswd);
-            $sql = "SELECT * FROM users WHERE BINARY username like '$Lusername'&& BINARY password like '" . md5($Lpasswd) . "'";
+            echo md5($Lpasswd);
+            $sql = "SELECT * FROM users WHERE  username = '$Lusername' && password = md5('$Lpasswd')";
             $result = $conn->query($sql)or die(mysqli_error());
             if ($result === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
-            } else if ($result->num_rows == 0) {
+            } elseif ($result->num_rows == 0) {
                 $LusernameErr = 'Username or Password Incorrect';
                 $LpasswdErr = 'Username or Password Incorrect';
-            } else if ($result->num_rows > 0) {
+            } elseif ($result->num_rows > 0) {
 // Password is correct, so start a new session
                 session_start();
                 $row = mysqli_fetch_array($result);
@@ -157,12 +157,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
                 $_SESSION["username"] = $row ['username'];
                 $_SESSION["usertype"] = $row ['role_id'];
                 $_SESSION["userid"] = $row ['user_id'];
-                $sql = "UPDATE `user_account` SET `last_login` = NOW() WHERE `username` = '$Lusername'";
-                if ($conn->query($sql) === FALSE) {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
-                }
-// Redirect user to activity page
-                if ($_SESSION["usertype"] == 'admin') {
+                // Redirect user to activity page
+                if ($_SESSION["usertype"] > 1) {
                     header("location: admin.php");
                 } else {
                     header("location: user.php");

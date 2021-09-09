@@ -1,15 +1,11 @@
 <?php
 include_once 'topbar.php';
-include_once 'userDataFunction.php';
-$email = "";
-$reemail = "";
-$passwd = "";
-$repasswd = "";
+include'userDataFunction.php';
 ?>
 <html>
     <head>
         <title> Profile Page </title>
-        <link rel="stylesheet" href="css/styleAbout.css">
+        <link rel="stylesheet" href="css/styleBG.css">
     </head>
     <body>
         <h1>Profile Page</h1>
@@ -47,10 +43,12 @@ $repasswd = "";
                 <form method="post" name="user_pass_update" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" id="pass_update"> 
                     <h2>Update Password</h2>
                     <hr>
-                    <input type="password" value="<?php echo $passwd ?>" placeholder="Enter Password" name="passwd" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/><span class="error">
-                        <?php echo $passwdErr; ?></span>
-                    <input type="password" value="<?php echo $repasswd ?>" placeholder="Repeat Password" name="repasswd" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/><span class="error">
-                        <?php echo $repasswdErr; ?></span><br>
+                    <input type="password" placeholder="Enter password" name="passwd" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $passwdErr; ?></span>
+                    <input type="password" placeholder="Enter new password" name="repasswd" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $repasswdErr; ?></span><br>
+                    <input type="password" placeholder="Repeat new password" name="test_repasswd" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $repasswdErr; ?></span><br>
                     <?php echo "<input type = 'hidden' name = 'userID' value = '" . $_SESSION["userid"] . "'>"; ?>
                     <hr>
                     <input type="submit" form="pass_update" value="Update Password" name="pass_submit" class="btn">
@@ -61,10 +59,12 @@ $repasswd = "";
                 <form method="post" name="user_email_update" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" id="email_update">
                     <h2>Update Email Address</h2>
                     <hr>
-                    <input type="text" value="<?php echo $email ?>" name="email" placeholder="email" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/><span class="error">
-                        <?php echo $emailErr; ?></span>
-                    <input type="text" value="<?php echo $reemail ?>" name="reemail" placeholder="confirm email" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/><span class="error">
-                        <?php echo $reemailErr; ?></span>
+                    <input type="text" name="email" placeholder="Enter email" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $emailErr; ?></span>
+                    <input type="text" name="reemail" placeholder="Enter new email" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $reemailErr; ?></span><br>
+                    <input type="text" name="test_reemail" placeholder="Confirm new email" onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off/>
+                    <span class="error"><?php echo $reemailErr; ?></span><br>
                     <?php echo "<input type = 'hidden' name = 'userID' value = '" . $_SESSION["userid"] . "'>"; ?>
                     <hr>
                     <input type="submit" form="email_update" value="Update Email" name="email_submit" class="btn">
