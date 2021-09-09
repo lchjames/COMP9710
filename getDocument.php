@@ -10,7 +10,7 @@ $resultDocument = $conn->query($getDocument) or die(mysqli_error());
             ?>
             <button class="collapsible"><?php echo $row ['document_name'] ?></button>
             <div class="content">
-                <iframe src="pdf/<?php echo $row ['document_link'] ?>#zoom=100" width="100%" height="500px">
+                <iframe src="pdf/<?php echo $row ['file_path'] ?>#zoom=100" width="100%" height="500px">
                 </iframe>
             </div>
 

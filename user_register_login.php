@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
         if (include 'DBConnect.php') {
            echo md5($Lpasswd);
             $sql = "SELECT * FROM users WHERE BINARY username like '$Lusername'&& BINARY password like '" . md5($Lpasswd) . "'";
-            $result = $conn->query($sql);
+            $result = $conn->query($sql)or die(mysqli_error());
             if ($result === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             } else if ($result->num_rows == 0) {
@@ -154,7 +154,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
                 $row = mysqli_fetch_array($result);
 // Store data in session variables
                 $_SESSION["loggedin"] = true;
-                //$_SESSION["mechine_state"] = 1;
                 $_SESSION["username"] = $row ['username'];
                 $_SESSION["usertype"] = $row ['role_id'];
                 $_SESSION["userid"] = $row ['user_id'];

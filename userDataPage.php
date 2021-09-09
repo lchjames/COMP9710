@@ -20,7 +20,7 @@ $repasswd = "";
             <?php
             include 'DBConnect.php';
             $sql = "SELECT * FROM `users` WHERE user_id = " . $_SESSION["userid"] . "";
-            $result = $conn->query($sql);
+            $result = $conn->query($sql)or die(mysqli_error());
             if ($conn->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

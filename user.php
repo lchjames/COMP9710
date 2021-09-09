@@ -21,8 +21,9 @@
         </div><!-- Left -->
 
         <div class="split right">
-            <iframe src="img/temp pic.png" width="100%" onload="resizeIframe(this)" >
-            </iframe>
+            <?php
+            include 'showProcess.php';
+            ?>
         </div>
         <script>
             var coll = document.getElementsByClassName("collapsible");
