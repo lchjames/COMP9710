@@ -174,11 +174,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
     }
 }
 
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
+//function test_input($data) {
+//    $data = trim($data);
+//    $data = stripslashes($data);
+//    $data = htmlspecialchars($data);
+//    return $data;
+//}
 ?>
 

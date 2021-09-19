@@ -37,9 +37,9 @@ include 'user_register_login.php';
 
             if ($_SESSION["usertype"] > 1) {
                 if (basename($_SERVER['PHP_SELF']) == "admin.php") {
-                    echo "<a class=\"active\" href=\"staff/admin.php\">Home</a>";
+                    echo "<a class=\"active\" href=\"moduleManage.php\">Home</a>";
                 } else {
-                    echo "<a href=\"admin.php\">Home</a>";
+                    echo "<a href=\"moduleManage.php\">Home</a>";
                 }
                 if (basename($_SERVER['PHP_SELF']) == "adminPanel.php") {
                     echo "<a class=\"active\" href=\"adminPanel.php\">Admin Panel</a>";
@@ -47,7 +47,7 @@ include 'user_register_login.php';
                     echo "<a href=\"adminPanel.php\">Admin Panel</a>";
                 }
                 if (basename($_SERVER['PHP_SELF']) == "generateAccount.php") {
-                    echo "<a class=\"active\" href=\"staff/generateAccount.php\">Generate Account</a>";
+                    echo "<a class=\"active\" href=\"generateAccount.php\">Generate Account</a>";
                 } else {
                     echo "<a href=\"generateAccount.php\">Generate Account</a>";
                 }

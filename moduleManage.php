@@ -1,5 +1,5 @@
 <?php
-include '../topbar.php';
+include 'topbar.php';
 include 'getModuleDetail.php';
 $today = date("Y-m-d");
 $state = "";
@@ -77,8 +77,5 @@ $state = "";
     ?>
 </table>
 <button onclick="window.location.href = 'upload.php'">Upload new Video/PDF</button>
-<!--<iframe width="420" height="315"
-        src="https://www.youtube.com/embed/tgbNymZ7vqY">
-</iframe>-->
 </body>
 </html>
