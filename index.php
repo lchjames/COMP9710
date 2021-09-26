@@ -2,10 +2,11 @@
     <?php
     include_once 'user_register_login.php';
     if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-        if ($_SESSION["usertype"] == 'admin') {
-            header("location: admin.php");
-        } else {
+        // Redirect user to activity page
+        if ($_SESSION["usertype"] == 3) {
             header("location: user.php");
+        } else {
+            header("location: moduleManage.php");
         }
     }
     ?>

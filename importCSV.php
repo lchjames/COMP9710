@@ -3,7 +3,8 @@ include 'topbar.php';
 ?>
 <html>
     <body>
-        <h1>Confirm the imported student detail</h1>
+        <h2>Generate Account</h2>
+        <h3>Confirm the imported student detail</h3>
         <table>
             <tr>
                 <th>Title</th>
@@ -21,8 +22,6 @@ include 'topbar.php';
                 $file = "excel/" . $_FILES["file"]["name"];
                 $file_open = fopen($file, "r");
                 $_SESSION["file"] = $file;
-                echo $_SESSION["file"];
-                echo $file;
                 fgets($file_open);  // read one line for nothing (skip header)
                 while (($csv = fgetcsv($file_open, 1000, ",")) !== false) {
                     $title = $csv[0];
@@ -74,29 +73,31 @@ include 'topbar.php';
         <input type="submit" value="Confirm" name="confirm_submit" class="confirmbtn">
     </form>
     <?php
-    $today = date("Y-m-d");
+    $today = date('Y-m-d H:i:s');
     if (isset($_POST["confirm_submit"])) {
-        $file = $_SESSION["file"];
-        $file_open = fopen($file, "r");
-        fgets($file_open);  // read one line for nothing (skip header)
-        while (($csv = fgetcsv($file_open, 1000, ",")) !== false) {
-            $title = $csv[0];
-            $first_name = $csv[1];
-            $middle_name = $csv[2];
-            $family_name = $csv[3];
-            $sex = $csv[4];
-            $username = $csv[5];
-            $email = $csv[6];
-            $student_id = $csv[7];
-            $fan = $csv[8];
-            if (include 'DBconnect.php') {
+        if (include 'DBconnect.php') {
+            $file = $_SESSION["file"];
+            $file_open = fopen($file, "r");
+            fgets($file_open);  // read one line for nothing (skip header)
+            while (($csv = fgetcsv($file_open, 200, ",")) !== false) {
+                $title = $csv[0];
+                $first_name = $csv[1];
+                $middle_name = $csv[2];
+                $family_name = $csv[3];
+                $gender = $csv[4];
+                $username = $csv[5];
+                $email = $csv[6];
+                $student_id = $csv[7];
+                $fan = $csv[8];
                 $uploader = $_SESSION["username"];
-                $sql = "INSERT INTO users (title, first_name, middle_name, family_name, sex, username, password, email_address, student_id, FAN,creted_date, created_by, last_modified_date, last_modified_by) VALUES ('$title','$first_name','$middle_name','$family_name','$sex','$username','" . md5($username) . "','$email','$student_id','$fan','$today','$uploader','$today','$uploader')";
+                $sql = "INSERT INTO users (title, first_name, middle_name, family_name, gender, username, password, email_address, student_id, FAN,creted_date, created_by, last_modified_date, last_modified_by) VALUES ('$title','$first_name','$middle_name','$family_name','$gender','$username','" . md5($username) . "','$email','$student_id','$fan','$today','$uploader','$today','$uploader')";
                 if ($conn->query($sql) === FALSE) {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
             }
         }
-        header('Location:moduleManage.php');
+
+        echo "Upload completed";
+        header('refresh:5; url=moduleManage.php');
     }
     ?>

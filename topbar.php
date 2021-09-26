@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE php>
 <?php
+date_default_timezone_set('Australia/Adelaide');
 include 'user_register_login.php';
 ?>
 <html>
@@ -35,7 +36,7 @@ include 'user_register_login.php';
                 echo "<b><a href=\"userDataPage.php\" class=\"username\">Welcome, " . $_SESSION["username"] . "</a></b>";
             }
 
-            if ($_SESSION["usertype"] > 1) {
+            if ($_SESSION["usertype"] != 3) {
                 if (basename($_SERVER['PHP_SELF']) == "admin.php") {
                     echo "<a class=\"active\" href=\"moduleManage.php\">Home</a>";
                 } else {
@@ -52,7 +53,7 @@ include 'user_register_login.php';
                     echo "<a href=\"generateAccount.php\">Generate Account</a>";
                 }
             } else
-            if ($_SESSION["usertype"] = 1) {
+            if ($_SESSION["usertype"] == 3) {
                 if (basename($_SERVER['PHP_SELF']) == "user.php") {
                     echo "<a class=\"active\" href=\"user.php\">Home</a>";
                 } else {

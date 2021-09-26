@@ -1,6 +1,7 @@
 <?php
 include 'DBConnect.php';
-$sql = "SELECT * FROM module WHERE start_date < UTC_DATE()  && end_date > UTC_DATE()"; //UTC_DATE() current date in UTC
+$today = date('Y-m-d H:i:s');
+$sql = "SELECT * FROM module WHERE start_date < '$today'  && end_date > '$today'";
 $result = $conn->query($sql) or die(mysqli_error());
 while ($row = mysqli_fetch_array($result)) {
     $moduleID = $row ['module_id'];

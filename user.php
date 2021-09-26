@@ -15,9 +15,13 @@
     </head>
     <body>
         <div class="split left">
-            <?php
-            include 'readModules.php';
-            ?>
+            <section id="main-content">
+                <div id="guts">
+                    <?php
+                    include 'readModules.php';
+                    ?>
+                </div>
+            </section>
         </div><!-- Left -->
 
         <div class="split right">
@@ -44,4 +48,3 @@
 
     </body>
 </html> 
-

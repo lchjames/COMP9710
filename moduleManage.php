@@ -19,11 +19,16 @@ $state = "";
             if ($result->num_rows > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     $moduleID = $row ['module_id'];
-                    if ($today > $row['start_date'] && $today < $row['end_date']) {
+                    $start_date = $row['start_date'];
+                    $end_date = $row['end_date'];
+                    $today_time = strtotime($today);
+                    $start_time = strtotime($start_date);
+                    $end_time = strtotime($end_date);
+                    if ($today_time > $start_time && $today_time < $end_time) {
                         $state = "This module is currently active";
-                    } elseif ($today < $row['start_date']) {
+                    } elseif ($today_time < $start_time) {
                         $state = "This module will start at " . $row['start_date'];
-                    } elseif ($today > $row['end_date']) {
+                    } elseif ($today_time > $end_time) {
                         $state = "This module was expired at " . $row['end_date'];
                     }
                     ?>
