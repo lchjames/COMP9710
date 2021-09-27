@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_update'])) {
         }
     }
     $conn->close();
-    //header("location: moduleManage.php");
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_delete'])) {
     $user_id = $_POST['UserID'];
@@ -26,6 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['user_delete'])) {
         }
     }
     $conn->close();
-    header("location: moduleManage.php");
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 }
 ?>

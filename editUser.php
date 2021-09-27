@@ -41,79 +41,79 @@ $today = date("Y-m-d");
                                 include_once 'DBConnect.php';
                                 $sql = "SELECT * FROM users";
                                 $result = $conn->query($sql) or die(mysqli_error());
-                            }
-                            if ($result->num_rows > 0) {
-                                while ($row = mysqli_fetch_array($result)) {
-                                    ?>
 
-                                    <tr>
-                                    <form class = "user_update" method = "POST" action="updateUserDetail.php">
-                                        <?php
-                                        echo "<input type = 'hidden' name = 'UserID' value = '" . $row ['user_id'] . "'>";
+                                if ($result->num_rows > 0) {
+                                    while ($row = mysqli_fetch_array($result)) {
                                         ?>
-                                        <td> <!<!-- Role -->
+                                        <tr>
+                                        <form class="user_update" method="POST" action="updateUserDetail.php">
                                             <?php
-                                            $role_id = $row ['role_id'];
-                                            if ($role_id == "1") {
+                                            echo "<input type = 'hidden' name = 'UserID' value = '" . $row ['user_id'] . "'>";
+                                            ?>
+                                            <td> <!<!-- Role -->
+                                                <?php
+                                                $role_id = $row ['role_id'];
+                                                if ($role_id == "1") {
+                                                    ?>
+                                                    <select name="role">
+                                                        <option value="1" selected>Topic Coordinator</option>
+                                                        <option value="2">Tutor</option>
+                                                        <option value="3">Student</option>
+                                                    </select>
+                                                <?php } else if ($role_id == "2") {
+                                                    ?>
+                                                    <select name="role">
+                                                        <option value="1">Topic Coordinator</option>
+                                                        <option value="2" selected>Tutor</option>
+                                                        <option value="3">Student</option>
+                                                    </select>
+                                                <?php } else if ($role_id == "3") {
+                                                    ?>
+                                                    <select name="role">
+                                                        <option value="1">Topic Coordinator</option>
+                                                        <option value="2">Tutor</option>
+                                                        <option value="3" selected>Student</option>
+                                                    </select>
+                                                <?php } ?>
+                                            </td>
+                                            <td><!-- title -->
+                                                <?php
+                                                echo $row['title'];
                                                 ?>
-                                                <select name="role">
-                                                    <option value="1" selected>Topic Coordinator</option>
-                                                    <option value="2">Tutor</option>
-                                                    <option value="3">Student</option>
-                                                </select>
-                                            <?php } else if ($role_id == "2") {
+                                            </td>
+                                            <td><!-- first name -->
+                                                <?php
+                                                echo $row['first_name'];
                                                 ?>
-                                                <select name="role">
-                                                    <option value="1">Topic Coordinator</option>
-                                                    <option value="2" selected>Tutor</option>
-                                                    <option value="3">Student</option>
-                                                </select>
-                                            <?php } else if ($role_id == "3") {
+                                            </td>
+                                            <td><!-- middle name -->
+                                                <?php
+                                                echo $row['middle_name'];
                                                 ?>
-                                                <select name="role">
-                                                    <option value="1">Topic Coordinator</option>
-                                                    <option value="2">Tutor</option>
-                                                    <option value="3" selected>Student</option>
-                                                </select>
-                                            <?php } ?>
-                                        </td>
-                                        <td><!-- title -->
-                                            <?php
-                                            echo $row['title'];
-                                            ?>
-                                        </td>
-                                        <td><!-- first name -->
-                                            <?php
-                                            echo $row['first_name'];
-                                            ?>
-                                        </td>
-                                        <td><!-- middle name -->
-                                            <?php
-                                            echo $row['middle_name'];
-                                            ?>
-                                        </td>
-                                        <td><!-- family name -->
-                                            <?php
-                                            echo $row['family_name'];
-                                            ?>
-                                        </td>
-                                        <td><!-- control -->
+                                            </td>
+                                            <td><!-- family name -->
+                                                <?php
+                                                echo $row['family_name'];
+                                                ?>
+                                            </td>
+                                            <td><!-- control -->
+                                                <?php echo "<input type = 'hidden' name = 'UserID' value = '" . $row['user_id'] . "'>"; ?>
+                                                <input type = "submit" name = "user_update" value="Update"></input>
+                                        </form>
+                                        <form class="user_delete" method="POST" action="updateUserDetail.php">
                                             <?php echo "<input type = 'hidden' name = 'UserID' value = '" . $row['user_id'] . "'>"; ?>
-                                            <button type = "submit" name = "user_update">Update</button>
-                                    </form>
-                                    <form class = "user_delete" method = "POST" action="updateUserDetail.php">
-                                        <?php echo "<input type = 'hidden' name = 'UserID' value = '" . $row['user_id'] . "'>"; ?>
-                                        <button type = "submit" name = "user_delete">Delete</button>
-                                    </form>
-                                    </td>
+                                            <input type = "submit" name = "user_delete" value="Delete"></input>
+                                        </form>
+                                        </td>
 
 
-                                    </tr>
-                                    <?php
+                                        </tr>
+                                        <?php
+                                    }}
                                 }
-                            }
-                            ?>
+                                ?>
                         </table>
+                        <br>
                 </div>
             </section>
         </div>

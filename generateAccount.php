@@ -9,7 +9,7 @@
         <title>Generate Account</title>
     </head>
     <body>
-        <div class="container">
+<!--        <div class="container">
             <form method="post" name="user_register_submit" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" id="user_register"> 
                 <h2>Generate Account</h2>
                 <br>
@@ -20,7 +20,7 @@
                 <hr>
                 <input type="submit" form="user_register" value="Register" name="register_submit" class="registerbtn">
             </form>
-        </div>
+        </div>-->
         <div class="container">
             <form method="post" action="importCSV.php" enctype="multipart/form-data">
                 <input type="file" name="file"/>

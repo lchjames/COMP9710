@@ -19,16 +19,10 @@ $allow_passwd_to_input = FALSE;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-/* if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true) {
-  if (basename($_SERVER['PHP_SELF']) == "login.php") {
-  header("location: about.php");
-  exit;
-  }
-  } else {
-  if (basename($_SERVER['PHP_SELF']) != "login.php" && basename($_SERVER['PHP_SELF']) != "about.php") {
-  header("location: login.php");
-  }
-  } */
+if (basename($_SERVER['PHP_SELF']) != "index.php" && $_SESSION["loggedin"] != true) {
+    header("location: index.php");
+}
+
 //if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
 //    if (empty($_POST["username"])) {
 //        $usernameErr = "Username is required";
