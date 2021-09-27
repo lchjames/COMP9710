@@ -24,12 +24,32 @@ if (isset($_POST['module_update'])) {
     }
     $conn->close();
     header("Location: " . $_SERVER["HTTP_REFERER"]);
-} if (isset($_POST['module_delete'])) {
+}
+if (isset($_POST['module_delete'])) {
     $moduleid = $_POST['moduleID'];
     if (include 'DBConnect.php') {
-        $sql = "DELETE FROM module WHERE module_id = '$moduleid'";
-        if ($conn->query($sql) === FALSE) {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+        $sql = "SELECT * FROM activity WHERE module_id = '$moduleid'";
+        $result = $conn->query($sql) or die(mysqli_error());
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_array($result)) {
+                $activity_id = $row['activity_id'];
+                $sql = "DELETE FROM document WHERE activity_id = '$activity_id'";
+                if ($conn->query($sql) === FALSE) {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                $sql = "DELETE FROM video WHERE activity_id = '$activity_id'";
+                if ($conn->query($sql) === FALSE) {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+                $sql = "DELETE FROM activity WHERE module_id = '$moduleid'";
+                if ($conn->query($sql) === FALSE) {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }
+            $sql = "DELETE FROM module WHERE module_id = '$moduleid'";
+            if ($conn->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     }
     $conn->close();
