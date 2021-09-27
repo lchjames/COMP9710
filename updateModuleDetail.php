@@ -23,7 +23,7 @@ if (isset($_POST['module_update'])) {
         }
     }
     $conn->close();
-    //header("Location: " . $_SERVER["HTTP_REFERER"]);
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 } if (isset($_POST['module_delete'])) {
     $moduleid = $_POST['moduleID'];
     if (include 'DBConnect.php') {
@@ -33,6 +33,6 @@ if (isset($_POST['module_update'])) {
         }
     }
     $conn->close();
-    //header("Location: " . $_SERVER["HTTP_REFERER"]);
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
 }
 ?>

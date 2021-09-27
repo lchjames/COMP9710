@@ -46,12 +46,9 @@ $state = "";
                                     ?>
                                     <tr>
                                     <form class = "module_update" method = "POST" action="updateModuleDetail.php">
-                                        <input type = 'hidden' name = 'moduleID' value = '<?php echo $row ['module_id']; ?>'>
                                         <?php $moduleID = $row ['module_id']; ?>
                                         <td> <!-- module_name -->
-                                            <?php
-                                            $modulename = $row ['module_name'];
-                                            ?>
+                                            <?php $modulename = $row ['module_name']; ?>
                                             <input type='text' name='module_name' value ='<?php echo $modulename; ?>'>
                                         </td>
                                         <td> <!--  start date -->
@@ -71,10 +68,11 @@ $state = "";
                                             <input type='date' name='end_date' value='<?php echo $enddate; ?>' min='<?php echo $start_date ?>'>
                                         </td>
                                         <td><!-- control -->
+                                            <input type = 'hidden' name = 'moduleID' value = '<?php echo $row ['module_id']; ?>'>
                                             <input type = "submit" name = "module_update" value="Update">
                                     </form>
                                     <form class = "module_delete" method = "POST" action="updateModuleDetail.php" >
-                                        <?php echo "<input type = 'hidden' name = 'moduleID' value = '" . $moduleID . "'>"; ?>
+                                        <input type = 'hidden' name = 'moduleID' value = '<?php echo $moduleID; ?>'>
                                         <input type = "submit" name = "module_delete" value="Delete">
                                     </form>
                                     </td>
