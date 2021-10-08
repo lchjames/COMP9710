@@ -41,7 +41,7 @@ $state = "";
                             $resultDocument = $conn->query($getDocument) or die(mysqli_error());
                             if ($resultDocument->num_rows > 0) {
                                 while ($row = mysqli_fetch_array($resultDocument)) {
-                                    ?><p><a href="../pdf/<?php echo $row ['file_path'] ?>"><?php echo $row ['document_name']; ?></p><?php
+                                    ?><p><a href="./pdf/<?php echo $row ['file_path'] ?>"><?php echo $row ['document_name']; ?></p><?php
                                 }
                             }
                             ?></td>
@@ -59,10 +59,10 @@ $state = "";
                             $resultVideo = $conn->query($getVideo) or die(mysqli_error());
                             if ($resultVideo->num_rows > 0) {
                                 while ($row = mysqli_fetch_array($resultVideo)) {
-                                    if ($row['video_type_id'] = 1) {
-                                        ?><p><a href="<?php echo $row ['url_link'] ?>"><?php echo $row ['video_name']; ?></a</p><?php
-                                    } elseif ($row['video_type_id'] = 2) {
-                                        ?><p><!--<a href="localhost"></a>--><?php echo $row ['video_name']; ?></p><?php
+                                    if ($row['video_type_id'] == 1) {
+                                        ?><p><a href="https://youtu.be/<?php echo $row ['url_link'] ?>"><?php echo $row ['video_name']; ?></a></p><?php
+                                    } elseif ($row['video_type_id'] == 2) {
+                                        ?><p><a href="./video/<?php echo $row ['file_path'] ?>"><?php echo $row ['video_name']; ?></a></p><?php
                                     }
                                 }
                             }

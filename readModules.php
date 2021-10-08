@@ -1,3 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/styleBG2.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function resizeIframe(obj)
+    {
+        obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+    }
+</script>
 <?php
 include 'DBConnect.php';
 $today = date('Y-m-d H:i:s');

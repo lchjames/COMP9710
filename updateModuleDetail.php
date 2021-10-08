@@ -8,7 +8,7 @@ $moduleid = "";
 $modulestate = "";
 if (isset($_POST['module_update'])) {
     $moduleid = $_POST['moduleID'];
-    $today = date("Y-m-d");
+    $today = date("Y-m-d H:i:s");
     $module_name = $_POST['module_name'];
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];

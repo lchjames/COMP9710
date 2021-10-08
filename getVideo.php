@@ -7,7 +7,6 @@ $resultVideo = $conn->query($getVideo) or die(mysqli_error());
     <?php
     if ($resultVideo->num_rows > 0) {
         while ($row = mysqli_fetch_array($resultVideo)) {
-
             if ($row['video_type_id'] == 2) {
                 ?>
                 <p><?php echo $row ['video_name']; ?></p>
@@ -20,7 +19,7 @@ $resultVideo = $conn->query($getVideo) or die(mysqli_error());
             } elseif ($row['video_type_id'] == 1) {
                 ?>
                 <p><?php echo $row ['video_name']; ?></p>
-                <iframe width="400" height="315" src="<?php echo $row ['url_link']; ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="400" height="315" src="https://www.youtube.com/embed/<?php echo $row['url_link'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <br>
                 <?php
             }

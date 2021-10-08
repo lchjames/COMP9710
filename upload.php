@@ -7,7 +7,20 @@
     Video Name: 
     <input type="text" name="videoName" id="videoName" placeholder="Input the title for the video">
     For Activity: 
-    <input type="text" name="activity" id="activity" placeholder="Input activity number">
+    <select name="activity" id="activity">
+        <?php
+        include_once 'DBconnect.php';
+        $getActivity = "SELECT * FROM activity";
+        $resultActivity = $conn->query($getActivity) or die(mysqli_error());
+        if ($resultActivity->num_rows > 0) {
+            while ($row = mysqli_fetch_array($resultActivity)) {
+                ?>
+                <option value="<?php echo $row ['activity_id'] ?>"><?php echo $row ['activity_name'] ?></option>
+                <?php
+            }
+        }
+        ?>
+    </select>
     Description:
     <input type="text" name="description" id="description" placeholder="Input description">
     <input type="submit" value="Upload Video" name="submit">
@@ -19,8 +32,21 @@
     PDF Name: 
     <input type="text" name="pdfName" id="pdfName" placeholder="Input the title for the pdf">
     For Activity: 
-    <input type="text" name="activity" id="activity" placeholder="Input activity number">
-     Description:
+    <select name="activity" id="activity">
+        <?php
+        include_once 'DBconnect.php';
+        $getActivity = "SELECT * FROM activity";
+        $resultActivity = $conn->query($getActivity) or die(mysqli_error());
+        if ($resultActivity->num_rows > 0) {
+            while ($row = mysqli_fetch_array($resultActivity)) {
+                ?>
+                <option value="<?php echo $row ['activity_id'] ?>"><?php echo $row ['activity_name'] ?></option>
+                <?php
+            }
+        }
+        ?>
+    </select>
+    Description:
     <input type="text" name="description" id="description" placeholder="Input description">
     <input type="submit" value="Upload Document" name="submit">
 </form>

@@ -3,7 +3,7 @@ $(function() {
     var newHash      = "",
         $mainContent = $("#main-content"),
         $pageWrap    = $("#page-wrap"),
-        baseHeight   = 300,
+        baseHeight   = 0,
         $el;
         
     $pageWrap.height($pageWrap.height());

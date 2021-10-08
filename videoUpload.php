@@ -1,10 +1,12 @@
 <?php
 
 session_start();
+$today = date("Y-m-d H:i:s");
 $uploader = $_SESSION["username"];
-$target_dir = "../video/";
+$target_dir = "./video/";
+https://youtu.be/rvelwxuzwEE
 $target_file = $target_dir . basename($_FILES["videoToUpload"]["name"]);
-$link = $_POST['linkToUpload'];
+$link = substr($_POST['linkToUpload'], 17);
 $video_name = $_POST['videoName'];
 $activity_id = $_POST['activity'];
 $description = $_POST['description'];
@@ -26,7 +28,7 @@ if ($link == null) {
 // Allow certain file formats
 
     if ($videoFileType != "wmv" && $videoFileType != "mp4" && $videoFileType != "avi" && $videoFileType != "MP4") {
-        echo "Sorry, only wmv, mp4 & avi files are allowed.";
+        echo "Sorry, only wmv, mp4 & avi files are allowed. " . htmlspecialchars(basename($_FILES["videoToUpload"]["name"]));
         $uploadOk = 0;
     }
 }
@@ -38,21 +40,28 @@ if ($uploadOk == 0 || empty($_POST["videoName"]) || empty($_POST["activity"])) {
 } else {
     if ($link == null) {
         if (move_uploaded_file($_FILES["videoToUpload"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["videoToUpload"]["name"])) . " has been uploaded for Module" . $activity_id;
             $path_link = basename($_FILES["videoToUpload"]["name"]);
-            include_once '../DBConnect.php';
-            $sql = "INSERT INTO `video`(`video_type_id`, `activity_id`, `video_name`, `description`, `file_path`, `creted_date`, `created_by`) "
-                    . "VALUES (2, '$activity_id','$video_name','$description','$path_link', UTC_DATE(), '$uploader')";
-            $result = $conn->query($sql) or die(mysqli_error());
+            include_once 'DBConnect.php';
+            $sql = "INSERT INTO `video`(`video_type_id`, `activity_id`, `video_name`, `description`, `file_path`, `creted_date`, `created_by`)"
+                    . " VALUES (2, '$activity_id','$video_name','$description','$path_link','$today','$uploader')";
+            if ($conn->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            } else {
+                echo "The file " . htmlspecialchars(basename($_FILES["videoToUpload"]["name"])) . " has been uploaded for Module" . $activity_id;
+            }
             $conn->close();
             header("location: moduleManage.php");
         }
     } elseif ($link != null) {
-        include_once '../DBConnect.php';
+        include_once 'DBConnect.php';
         $sql = "INSERT INTO `video`(`video_type_id`, `activity_id`, `video_name`, `description`,`url_link`, `creted_date`, `created_by`) "
-                . "VALUES (1, '$activity_id','$video_name','$description','$link', UTC_DATE(), '$uploader')";
-        $result = $conn->query($sql) or die(mysqli_error());
+                . "VALUES (1, '$activity_id','$video_name','$description','$link', '$today','$uploader')";
+
+        if ($conn->query($sql) === FALSE) {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
         $conn->close();
+        //echo $link;
         header("location: moduleManage.php");
     } else {
         echo "Sorry, there was an error uploading your file.";

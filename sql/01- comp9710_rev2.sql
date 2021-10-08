@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 26, 2021 at 07:43 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- 主機： 127.0.0.1
+-- 產生時間： 2021 年 10 月 08 日 06:01
+-- 伺服器版本： 10.4.18-MariaDB
+-- PHP 版本： 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `comp9710`
+-- 資料庫： `comp9710`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity`
+-- 資料表結構 `activity`
 --
 
 CREATE TABLE `activity` (
@@ -41,7 +41,7 @@ CREATE TABLE `activity` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `activity`
+-- 傾印資料表的資料 `activity`
 --
 
 INSERT INTO `activity` (`activity_id`, `module_id`, `activity_name`, `description`, `start_date`, `end_date`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `activity` (`activity_id`, `module_id`, `activity_name`, `descriptio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_grade`
+-- 資料表結構 `activity_grade`
 --
 
 CREATE TABLE `activity_grade` (
@@ -67,7 +67,7 @@ CREATE TABLE `activity_grade` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_question`
+-- 資料表結構 `activity_question`
 --
 
 CREATE TABLE `activity_question` (
@@ -91,7 +91,7 @@ CREATE TABLE `activity_question` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_question_answer`
+-- 資料表結構 `activity_question_answer`
 --
 
 CREATE TABLE `activity_question_answer` (
@@ -112,7 +112,7 @@ CREATE TABLE `activity_question_answer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course`
+-- 資料表結構 `course`
 --
 
 CREATE TABLE `course` (
@@ -132,7 +132,7 @@ CREATE TABLE `course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `course`
+-- 傾印資料表的資料 `course`
 --
 
 INSERT INTO `course` (`course_id`, `course_key`, `course_name`, `description`, `semester`, `year`, `start_date`, `end_date`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`, `archive_status`) VALUES
@@ -141,7 +141,7 @@ INSERT INTO `course` (`course_id`, `course_key`, `course_name`, `description`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `document`
+-- 資料表結構 `document`
 --
 
 CREATE TABLE `document` (
@@ -156,10 +156,17 @@ CREATE TABLE `document` (
   `last_modified_by` char(6) DEFAULT NULL COMMENT 'Document last modified by'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `document`
+--
+
+INSERT INTO `document` (`document_id`, `activity_id`, `document_name`, `description`, `file_path`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
+(1, 1, 'asd', 'a', '0903496499_000001269159531.pdf', '2021-10-08 14:29:29', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enrolment`
+-- 資料表結構 `enrolment`
 --
 
 CREATE TABLE `enrolment` (
@@ -175,7 +182,7 @@ CREATE TABLE `enrolment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `management`
+-- 資料表結構 `management`
 --
 
 CREATE TABLE `management` (
@@ -191,7 +198,7 @@ CREATE TABLE `management` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `module`
+-- 資料表結構 `module`
 --
 
 CREATE TABLE `module` (
@@ -207,11 +214,11 @@ CREATE TABLE `module` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `module`
+-- 傾印資料表的資料 `module`
 --
 
 INSERT INTO `module` (`module_id`, `course_id`, `module_name`, `start_date`, `end_date`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
-(1, 1, 'Module1 - Understanding the various attack types', '2021-09-01 02:47:12', '2021-09-22 02:47:28', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:30', '2'),
+(1, 1, 'Module1 - Understanding the various attack types', '2021-09-01 02:47:12', '2021-11-30 02:47:28', '2021-09-21 14:47:55', '2', '2021-10-08 14:13:10', '2'),
 (2, 1, 'Module2 - Install and Configure Type II Hypervisor', '2021-09-02 02:47:18', '2021-09-09 02:47:30', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:31', '2'),
 (3, 1, 'Module3 - Managing Local Storage and Virtual Hard Disks', '2021-09-03 02:47:20', '2021-09-17 02:47:31', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:33', '2'),
 (4, 1, 'Module4 - Write-Protect a USB Drive and Block a Port', '2021-09-04 02:47:22', '2021-09-30 02:47:35', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:36', '2'),
@@ -221,7 +228,7 @@ INSERT INTO `module` (`module_id`, `course_id`, `module_name`, `start_date`, `en
 -- --------------------------------------------------------
 
 --
--- Table structure for table `objective`
+-- 資料表結構 `objective`
 --
 
 CREATE TABLE `objective` (
@@ -237,7 +244,7 @@ CREATE TABLE `objective` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question_type`
+-- 資料表結構 `question_type`
 --
 
 CREATE TABLE `question_type` (
@@ -252,7 +259,7 @@ CREATE TABLE `question_type` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- 資料表結構 `role`
 --
 
 CREATE TABLE `role` (
@@ -265,7 +272,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `role`
+-- 傾印資料表的資料 `role`
 --
 
 INSERT INTO `role` (`role_id`, `role_name`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
@@ -276,7 +283,7 @@ INSERT INTO `role` (`role_id`, `role_name`, `creted_date`, `created_by`, `last_m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
+-- 資料表結構 `test`
 --
 
 CREATE TABLE `test` (
@@ -295,7 +302,7 @@ CREATE TABLE `test` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_grade`
+-- 資料表結構 `test_grade`
 --
 
 CREATE TABLE `test_grade` (
@@ -310,7 +317,7 @@ CREATE TABLE `test_grade` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_question`
+-- 資料表結構 `test_question`
 --
 
 CREATE TABLE `test_question` (
@@ -333,7 +340,7 @@ CREATE TABLE `test_question` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test_question_answer`
+-- 資料表結構 `test_question_answer`
 --
 
 CREATE TABLE `test_question_answer` (
@@ -353,7 +360,7 @@ CREATE TABLE `test_question_answer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- 資料表結構 `users`
 --
 
 CREATE TABLE `users` (
@@ -378,7 +385,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- 傾印資料表的資料 `users`
 --
 
 INSERT INTO `users` (`user_id`, `role_id`, `title`, `first_name`, `middle_name`, `family_name`, `gender`, `username`, `password`, `email_address`, `student_id`, `FAN`, `start_date`, `end_date`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
@@ -389,7 +396,7 @@ INSERT INTO `users` (`user_id`, `role_id`, `title`, `first_name`, `middle_name`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_manual_document`
+-- 資料表結構 `user_manual_document`
 --
 
 CREATE TABLE `user_manual_document` (
@@ -406,7 +413,7 @@ CREATE TABLE `user_manual_document` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video`
+-- 資料表結構 `video`
 --
 
 CREATE TABLE `video` (
@@ -426,7 +433,7 @@ CREATE TABLE `video` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `video_type`
+-- 資料表結構 `video_type`
 --
 
 CREATE TABLE `video_type` (
@@ -438,10 +445,18 @@ CREATE TABLE `video_type` (
   `last_modified_by` char(6) DEFAULT NULL COMMENT 'Video type last modified by'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 傾印資料表的資料 `video_type`
+--
+
+INSERT INTO `video_type` (`video_type_id`, `video_type_name`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
+(1, 'link', '2021-10-08 14:08:03', NULL, '2021-10-08 05:37:43', NULL),
+(2, 'video', '2021-10-08 14:08:18', NULL, '2021-10-08 05:38:10', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `virtual_machine`
+-- 資料表結構 `virtual_machine`
 --
 
 CREATE TABLE `virtual_machine` (
@@ -456,7 +471,7 @@ CREATE TABLE `virtual_machine` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vm_management`
+-- 資料表結構 `vm_management`
 --
 
 CREATE TABLE `vm_management` (
@@ -470,18 +485,18 @@ CREATE TABLE `vm_management` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- 已傾印資料表的索引
 --
 
 --
--- Indexes for table `activity`
+-- 資料表索引 `activity`
 --
 ALTER TABLE `activity`
   ADD PRIMARY KEY (`activity_id`,`module_id`),
   ADD KEY `module_id` (`module_id`);
 
 --
--- Indexes for table `activity_grade`
+-- 資料表索引 `activity_grade`
 --
 ALTER TABLE `activity_grade`
   ADD PRIMARY KEY (`activity_grade_id`,`user_id`,`activity_id`),
@@ -489,7 +504,7 @@ ALTER TABLE `activity_grade`
   ADD KEY `activity_id` (`activity_id`);
 
 --
--- Indexes for table `activity_question`
+-- 資料表索引 `activity_question`
 --
 ALTER TABLE `activity_question`
   ADD PRIMARY KEY (`activity_question_id`,`question_type_id`,`activity_id`),
@@ -497,7 +512,7 @@ ALTER TABLE `activity_question`
   ADD KEY `activity_id` (`activity_id`);
 
 --
--- Indexes for table `activity_question_answer`
+-- 資料表索引 `activity_question_answer`
 --
 ALTER TABLE `activity_question_answer`
   ADD PRIMARY KEY (`activity_answer_id`,`activity_question_id`,`user_id`),
@@ -505,20 +520,20 @@ ALTER TABLE `activity_question_answer`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `course`
+-- 資料表索引 `course`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`course_id`);
 
 --
--- Indexes for table `document`
+-- 資料表索引 `document`
 --
 ALTER TABLE `document`
   ADD PRIMARY KEY (`document_id`,`activity_id`),
   ADD KEY `activity_id` (`activity_id`);
 
 --
--- Indexes for table `enrolment`
+-- 資料表索引 `enrolment`
 --
 ALTER TABLE `enrolment`
   ADD PRIMARY KEY (`enrol_id`,`course_id`,`user_id`),
@@ -526,7 +541,7 @@ ALTER TABLE `enrolment`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `management`
+-- 資料表索引 `management`
 --
 ALTER TABLE `management`
   ADD PRIMARY KEY (`manage_id`,`course_id`,`user_id`),
@@ -534,40 +549,40 @@ ALTER TABLE `management`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `module`
+-- 資料表索引 `module`
 --
 ALTER TABLE `module`
   ADD PRIMARY KEY (`module_id`,`course_id`),
   ADD KEY `course_id` (`course_id`);
 
 --
--- Indexes for table `objective`
+-- 資料表索引 `objective`
 --
 ALTER TABLE `objective`
   ADD PRIMARY KEY (`objective_id`,`activity_id`),
   ADD KEY `activity_id` (`activity_id`);
 
 --
--- Indexes for table `question_type`
+-- 資料表索引 `question_type`
 --
 ALTER TABLE `question_type`
   ADD PRIMARY KEY (`question_type_id`);
 
 --
--- Indexes for table `role`
+-- 資料表索引 `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`role_id`);
 
 --
--- Indexes for table `test`
+-- 資料表索引 `test`
 --
 ALTER TABLE `test`
   ADD PRIMARY KEY (`test_id`,`module_id`),
   ADD KEY `module_id` (`module_id`);
 
 --
--- Indexes for table `test_grade`
+-- 資料表索引 `test_grade`
 --
 ALTER TABLE `test_grade`
   ADD PRIMARY KEY (`test_grade_id`,`user_id`,`test_id`),
@@ -575,14 +590,14 @@ ALTER TABLE `test_grade`
   ADD KEY `test_id` (`test_id`);
 
 --
--- Indexes for table `test_question`
+-- 資料表索引 `test_question`
 --
 ALTER TABLE `test_question`
   ADD PRIMARY KEY (`test_question_id`,`question_type_id`),
   ADD KEY `question_type_id` (`question_type_id`);
 
 --
--- Indexes for table `test_question_answer`
+-- 資料表索引 `test_question_answer`
 --
 ALTER TABLE `test_question_answer`
   ADD PRIMARY KEY (`test_answer_id`,`test_question_id`,`user_id`),
@@ -590,21 +605,21 @@ ALTER TABLE `test_question_answer`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `users`
+-- 資料表索引 `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`,`role_id`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `user_manual_document`
+-- 資料表索引 `user_manual_document`
 --
 ALTER TABLE `user_manual_document`
   ADD PRIMARY KEY (`document_id`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indexes for table `video`
+-- 資料表索引 `video`
 --
 ALTER TABLE `video`
   ADD PRIMARY KEY (`video_id`,`activity_id`,`video_type_id`),
@@ -612,270 +627,270 @@ ALTER TABLE `video`
   ADD KEY `video_type_id` (`video_type_id`);
 
 --
--- Indexes for table `video_type`
+-- 資料表索引 `video_type`
 --
 ALTER TABLE `video_type`
   ADD PRIMARY KEY (`video_type_id`);
 
 --
--- Indexes for table `virtual_machine`
+-- 資料表索引 `virtual_machine`
 --
 ALTER TABLE `virtual_machine`
   ADD PRIMARY KEY (`vm_id`);
 
 --
--- Indexes for table `vm_management`
+-- 資料表索引 `vm_management`
 --
 ALTER TABLE `vm_management`
   ADD PRIMARY KEY (`vm_mng_id`,`vm_id`),
   ADD KEY `vm_id` (`vm_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在傾印的資料表使用自動遞增(AUTO_INCREMENT)
 --
 
 --
--- AUTO_INCREMENT for table `activity`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activity`
 --
 ALTER TABLE `activity`
   MODIFY `activity_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activities', AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `activity_grade`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activity_grade`
 --
 ALTER TABLE `activity_grade`
   MODIFY `activity_grade_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activity grades';
 
 --
--- AUTO_INCREMENT for table `activity_question`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activity_question`
 --
 ALTER TABLE `activity_question`
   MODIFY `activity_question_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activity questions';
 
 --
--- AUTO_INCREMENT for table `activity_question_answer`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `activity_question_answer`
 --
 ALTER TABLE `activity_question_answer`
   MODIFY `activity_answer_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activity question answer';
 
 --
--- AUTO_INCREMENT for table `course`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `course`
 --
 ALTER TABLE `course`
   MODIFY `course_id` int(4) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all courses', AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `document`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `document`
 --
 ALTER TABLE `document`
-  MODIFY `document_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all documents';
+  MODIFY `document_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all documents', AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `enrolment`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `enrolment`
 --
 ALTER TABLE `enrolment`
   MODIFY `enrol_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all enrolments';
 
 --
--- AUTO_INCREMENT for table `management`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `management`
 --
 ALTER TABLE `management`
   MODIFY `manage_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all managements';
 
 --
--- AUTO_INCREMENT for table `module`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `module`
 --
 ALTER TABLE `module`
   MODIFY `module_id` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules', AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `objective`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `objective`
 --
 ALTER TABLE `objective`
   MODIFY `objective_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all objective';
 
 --
--- AUTO_INCREMENT for table `question_type`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `question_type`
 --
 ALTER TABLE `question_type`
   MODIFY `question_type_id` int(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all question type';
 
 --
--- AUTO_INCREMENT for table `role`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `role`
 --
 ALTER TABLE `role`
   MODIFY `role_id` int(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all roles', AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `test`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `test`
 --
 ALTER TABLE `test`
   MODIFY `test_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all tests';
 
 --
--- AUTO_INCREMENT for table `test_grade`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `test_grade`
 --
 ALTER TABLE `test_grade`
   MODIFY `test_grade_id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all test grades';
 
 --
--- AUTO_INCREMENT for table `test_question`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `test_question`
 --
 ALTER TABLE `test_question`
   MODIFY `test_question_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all test questions';
 
 --
--- AUTO_INCREMENT for table `test_question_answer`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `test_question_answer`
 --
 ALTER TABLE `test_question_answer`
   MODIFY `test_answer_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all test questions answer';
 
 --
--- AUTO_INCREMENT for table `users`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all users', AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `user_manual_document`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `user_manual_document`
 --
 ALTER TABLE `user_manual_document`
   MODIFY `document_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all manual documents';
 
 --
--- AUTO_INCREMENT for table `video`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `video`
 --
 ALTER TABLE `video`
-  MODIFY `video_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all videos';
+  MODIFY `video_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all videos', AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `video_type`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `video_type`
 --
 ALTER TABLE `video_type`
-  MODIFY `video_type_id` int(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all video types';
+  MODIFY `video_type_id` int(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all video types', AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `virtual_machine`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `virtual_machine`
 --
 ALTER TABLE `virtual_machine`
   MODIFY `vm_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all managements';
 
 --
--- AUTO_INCREMENT for table `vm_management`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `vm_management`
 --
 ALTER TABLE `vm_management`
   MODIFY `vm_mng_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all VM managements';
 
 --
--- Constraints for dumped tables
+-- 已傾印資料表的限制式
 --
 
 --
--- Constraints for table `activity`
+-- 資料表的限制式 `activity`
 --
 ALTER TABLE `activity`
   ADD CONSTRAINT `activity_ibfk_1` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`);
 
 --
--- Constraints for table `activity_grade`
+-- 資料表的限制式 `activity_grade`
 --
 ALTER TABLE `activity_grade`
   ADD CONSTRAINT `activity_grade_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `activity_grade_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`);
 
 --
--- Constraints for table `activity_question`
+-- 資料表的限制式 `activity_question`
 --
 ALTER TABLE `activity_question`
   ADD CONSTRAINT `activity_question_ibfk_1` FOREIGN KEY (`question_type_id`) REFERENCES `question_type` (`question_type_id`),
   ADD CONSTRAINT `activity_question_ibfk_2` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`);
 
 --
--- Constraints for table `activity_question_answer`
+-- 資料表的限制式 `activity_question_answer`
 --
 ALTER TABLE `activity_question_answer`
   ADD CONSTRAINT `activity_question_answer_ibfk_1` FOREIGN KEY (`activity_question_id`) REFERENCES `activity_question` (`activity_question_id`),
   ADD CONSTRAINT `activity_question_answer_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `document`
+-- 資料表的限制式 `document`
 --
 ALTER TABLE `document`
   ADD CONSTRAINT `document_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`);
 
 --
--- Constraints for table `enrolment`
+-- 資料表的限制式 `enrolment`
 --
 ALTER TABLE `enrolment`
   ADD CONSTRAINT `enrolment_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
   ADD CONSTRAINT `enrolment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `management`
+-- 資料表的限制式 `management`
 --
 ALTER TABLE `management`
   ADD CONSTRAINT `management_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
   ADD CONSTRAINT `management_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `module`
+-- 資料表的限制式 `module`
 --
 ALTER TABLE `module`
   ADD CONSTRAINT `module_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`);
 
 --
--- Constraints for table `objective`
+-- 資料表的限制式 `objective`
 --
 ALTER TABLE `objective`
   ADD CONSTRAINT `objective_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`);
 
 --
--- Constraints for table `test`
+-- 資料表的限制式 `test`
 --
 ALTER TABLE `test`
   ADD CONSTRAINT `test_ibfk_1` FOREIGN KEY (`module_id`) REFERENCES `module` (`module_id`);
 
 --
--- Constraints for table `test_grade`
+-- 資料表的限制式 `test_grade`
 --
 ALTER TABLE `test_grade`
   ADD CONSTRAINT `test_grade_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `test_grade_ibfk_2` FOREIGN KEY (`test_id`) REFERENCES `test` (`test_id`);
 
 --
--- Constraints for table `test_question`
+-- 資料表的限制式 `test_question`
 --
 ALTER TABLE `test_question`
   ADD CONSTRAINT `test_question_ibfk_1` FOREIGN KEY (`question_type_id`) REFERENCES `question_type` (`question_type_id`);
 
 --
--- Constraints for table `test_question_answer`
+-- 資料表的限制式 `test_question_answer`
 --
 ALTER TABLE `test_question_answer`
   ADD CONSTRAINT `test_question_answer_ibfk_1` FOREIGN KEY (`test_question_id`) REFERENCES `test_question` (`test_question_id`),
   ADD CONSTRAINT `test_question_answer_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- Constraints for table `users`
+-- 資料表的限制式 `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 
 --
--- Constraints for table `user_manual_document`
+-- 資料表的限制式 `user_manual_document`
 --
 ALTER TABLE `user_manual_document`
   ADD CONSTRAINT `user_manual_document_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`);
 
 --
--- Constraints for table `video`
+-- 資料表的限制式 `video`
 --
 ALTER TABLE `video`
   ADD CONSTRAINT `video_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`),
   ADD CONSTRAINT `video_ibfk_2` FOREIGN KEY (`video_type_id`) REFERENCES `video_type` (`video_type_id`);
 
 --
--- Constraints for table `vm_management`
+-- 資料表的限制式 `vm_management`
 --
 ALTER TABLE `vm_management`
   ADD CONSTRAINT `vm_management_ibfk_1` FOREIGN KEY (`vm_id`) REFERENCES `virtual_machine` (`vm_id`);

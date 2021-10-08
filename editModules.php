@@ -27,62 +27,61 @@ $state = "";
             </header>
             <section id="main-content">
                 <div id="guts">
-                    <body>
-                        <h1> Modules List</h1>
-                        <?php
-                        echo $dateErr;
-                        ?>
-                        <table>
-                            <tr>
-                                <th>Modules Name</th>
-                                <th>Start date</th>
-                                <th>End date</th>
-                                <th>Control</th>
-                            </tr>
+                    <h1> Modules List</h1>
+                    <?php
+                    echo $dateErr;
+                    ?>
+                    <table>
+                        <tr>
+                            <th>Modules Name</th>
+                            <th>Start date</th>
+                            <th>End date</th>
+                            <th>Control</th>
+                        </tr>
 
-                            <?php
-                            if ($result->num_rows > 0) {
-                                while ($row = mysqli_fetch_array($result)) {
-                                    ?>
-                                    <tr>
-                                    <form class = "module_update" method = "POST" action="updateModuleDetail.php">
-                                        <?php $moduleID = $row ['module_id']; ?>
-                                        <td> <!-- module_name -->
-                                            <?php $modulename = $row ['module_name']; ?>
-                                            <input type='text' name='module_name' value ='<?php echo $modulename; ?>'>
-                                        </td>
-                                        <td> <!--  start date -->
-                                            <?php
-                                            $sql = "SELECT * FROM module where module_id = " . $moduleID;
-                                            $resultdate = $conn->query($sql) or die(mysqli_error());
-                                            $startdate = date('Y-m-d', strtotime($row['start_date']));
-                                            ?>
-                                            <input type='date' name='start_date' value='<?php echo $startdate; ?>' min='<?php echo $today; ?>'>
-                                        </td>
-                                        <td> <!-- end date -->
-                                            <?php
-                                            $sql = "SELECT * FROM module where module_id = " . $moduleID;
-                                            $resultdate = $conn->query($sql) or die(mysqli_error());
-                                            $enddate = date('Y-m-d', strtotime($row['end_date']));
-                                            ?>
-                                            <input type='date' name='end_date' value='<?php echo $enddate; ?>' min='<?php echo $start_date ?>'>
-                                        </td>
-                                        <td><!-- control -->
-                                            <input type = 'hidden' name = 'moduleID' value = '<?php echo $row ['module_id']; ?>'>
-                                            <input type = "submit" name = "module_update" value="Update">
-                                    </form>
-                                    <form class = "module_delete" method = "POST" action="updateModuleDetail.php" >
-                                        <input type = 'hidden' name = 'moduleID' value = '<?php echo $moduleID; ?>'>
-                                        <input type = "submit" name = "module_delete" value="Delete">
-                                    </form>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while ($row = mysqli_fetch_array($result)) {
+                                ?>
+                                <tr>
+                                <form class = "module_update" method = "POST" action="updateModuleDetail.php">
+                                    <?php $moduleID = $row ['module_id']; ?>
+                                    <td> <!-- module_name -->
+                                        <?php $modulename = $row ['module_name']; ?>
+                                        <input type='text' name='module_name' value ='<?php echo $modulename; ?>'>
                                     </td>
-                                    </tr>
-                                    <?php
-                                }
+                                    <td> <!--  start date -->
+                                        <?php
+                                        $sql = "SELECT * FROM module where module_id = " . $moduleID;
+                                        $resultdate = $conn->query($sql) or die(mysqli_error());
+                                        $startdate = date('Y-m-d', strtotime($row['start_date']));
+                                        ?>
+                                        <input type='date' name='start_date' value='<?php echo $startdate; ?>' min='<?php echo $today; ?>'>
+                                    </td>
+                                    <td> <!-- end date -->
+                                        <?php
+                                        $sql = "SELECT * FROM module where module_id = " . $moduleID;
+                                        $resultdate = $conn->query($sql) or die(mysqli_error());
+                                        $enddate = date('Y-m-d', strtotime($row['end_date']));
+                                        ?>
+                                        <input type='date' name='end_date' value='<?php echo $enddate; ?>' min='<?php echo $start_date ?>'>
+                                    </td>
+                                    <td><!-- control -->
+                                        <input type = 'hidden' name = 'moduleID' value = '<?php echo $row ['module_id']; ?>'>
+                                        <input type = "submit" name = "module_update" value="Update">
+                                </form>
+                                <form class = "module_delete" method = "POST" action="updateModuleDetail.php" >
+                                    <input type = 'hidden' name = 'moduleID' value = '<?php echo $moduleID; ?>'>
+                                    <input type = "submit" name = "module_delete" value="Delete">
+                                </form>
+                                </td>
+                                </tr>
+                                <?php
                             }
-                            ?>
-                        </table>
-                        <br>
+                        }
+                        ?>
+                    </table>
+                    <br>
                 </div>
             </section>
         </div>
