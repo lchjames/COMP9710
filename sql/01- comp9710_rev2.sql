@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021 年 10 月 10 日 10:49
+-- 產生時間： 2021 年 10 月 10 日 14:52
 -- 伺服器版本： 10.4.18-MariaDB
 -- PHP 版本： 8.0.3
 
@@ -162,7 +162,7 @@ CREATE TABLE `document` (
 --
 
 INSERT INTO `document` (`document_id`, `activity_id`, `document_name`, `description`, `file_path`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
-(1, 1, 'asd', 'a', '0903496499_000001269159531.pdf', '2021-10-08 14:29:29', NULL, NULL, NULL);
+(2, 1, 'test', 'test', 'test.pdf', '2021-10-10 23:21:28', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -224,7 +224,8 @@ INSERT INTO `module` (`module_id`, `course_id`, `module_name`, `start_date`, `en
 (3, 1, 'Module3 - Managing Local Storage and Virtual Hard Disks', '2021-09-03 02:47:20', '2021-09-17 02:47:31', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:33', '2'),
 (4, 1, 'Module4 - Write-Protect a USB Drive and Block a Port', '2021-09-04 02:47:22', '2021-09-30 02:47:35', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:36', '2'),
 (5, 1, 'Module5 - this module already expired at 2021-03-01', '2021-09-05 02:47:24', '2021-09-10 02:47:33', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:35', '2'),
-(6, 1, 'Module6 - This module will be opened at 2021-12-01', '2021-09-06 02:47:26', '2021-09-10 02:47:37', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:38', '2');
+(6, 1, 'Module6 - This module will be opened at 2021-12-01', '2021-09-06 02:47:26', '2021-09-10 02:47:37', '2021-09-21 14:47:55', '2', '2021-09-27 02:47:38', '2'),
+(10, 1, '7777777', '2021-10-29 00:00:00', '2021-10-31 00:00:00', '2021-10-10 23:22:04', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -430,6 +431,13 @@ CREATE TABLE `video` (
   `last_modified_date` datetime DEFAULT NULL ON UPDATE current_timestamp() COMMENT 'Video last modified date',
   `last_modified_by` char(6) DEFAULT NULL COMMENT 'Video last modified by'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `video`
+--
+
+INSERT INTO `video` (`video_id`, `video_type_id`, `activity_id`, `video_name`, `description`, `file_path`, `url_link`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
+(11, 1, 1, 'a', 'a', NULL, 'rvelwxuzwEE', '2021-10-10 14:51:38', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -684,7 +692,7 @@ ALTER TABLE `course`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `document`
 --
 ALTER TABLE `document`
-  MODIFY `document_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all documents', AUTO_INCREMENT=2;
+  MODIFY `document_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all documents', AUTO_INCREMENT=3;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `enrolment`
@@ -702,7 +710,7 @@ ALTER TABLE `management`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules', AUTO_INCREMENT=10;
+  MODIFY `module_id` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules', AUTO_INCREMENT=11;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `objective`
@@ -762,7 +770,7 @@ ALTER TABLE `user_manual_document`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `video`
 --
 ALTER TABLE `video`
-  MODIFY `video_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all videos', AUTO_INCREMENT=10;
+  MODIFY `video_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all videos', AUTO_INCREMENT=12;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `video_type`

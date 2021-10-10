@@ -41,7 +41,7 @@ $state = "";
                             }
                             ?>
                             <tr>
-                        <form class = "Update-form" method = "POST" action="updateModuleDetail.php">
+                        <form class = "Update-form" method = "POST" action="deleteDocVideo.php">
                             <td> <!<!-- module_name -->
                                 <?php echo $row ['module_name']; ?></td>
                             <td><!-- Documents --><?php
@@ -50,11 +50,12 @@ $state = "";
                                 if ($resultDocument->num_rows > 0) {
                                     while ($row = mysqli_fetch_array($resultDocument)) {
                                         ?><p><a href="./pdf/<?php echo $row ['file_path'] ?>"><?php echo $row ['document_name']; ?>
-                                                <form method="post" action="deleteDocVideo.php">
-                                                    <input  hidden value="<?php echo $row ['document_id'] ?>" name="document_id">
-                                                    <input  type="submit" name="document_delete" value="Delete">
-                                                </form>
-                                        </p><?php
+
+                                        </p>
+                                        <form method="post" action="deleteDocVideo.php">
+                                            <input  type = 'hidden' value="<?php echo $row ['document_id'] ?>" name="document_id">
+                                            <input  type="submit" name="document_delete" value="Delete">
+                                        </form><?php
                                     }
                                 }
                                 ?></td>
@@ -76,14 +77,15 @@ $state = "";
                                         if ($row['video_type_id'] == 1) {
                                             ?><p><a href="https://youtu.be/<?php echo $row ['url_link'] ?>"><?php echo $row ['video_name']; ?></a></p><?php
                                         } elseif ($row['video_type_id'] == 2) {
-                                            ?><p><a href="./video/<?php echo $row ['file_path'] ?>"><?php echo $row ['video_name']; ?></a></p><?php
-                                            }
-                                        }
+                                            ?><p><a href="./video/<?php echo $row ['file_path'] ?>"><?php echo $row ['video_name']; ?></a></p><?php }
                                         ?>
-                                    <form method = "post" action = "deleteDocVideo.php">
-                                        <input hidden value = "<?php echo $row['video_id']; ?>" name = "video_id">
-                                        <input type = "submit" name = "video_delete" value = "Delete">
-                                    </form>
+                                        <form method = "post" action = "deleteDocVideo.php">
+                                            <input type = 'hidden' value = "<?php echo $row['video_id']; ?>" name = "video_id">
+                                            <input type = "submit" name = "video_delete" value = "Delete">
+                                        </form>
+                                    <?php }
+                                    ?>
+
                                     <?php
                                 }
                                 ?>
