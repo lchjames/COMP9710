@@ -1,6 +1,5 @@
 <html>
     <?php
-    include_once 'user_register_login.php';
     include_once 'topbar.php';
     ?>
     <head>
@@ -13,11 +12,33 @@
             <form method="post" name="user_register_submit" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" id="user_register"> 
                 <h2>Generate Account</h2>
                 <br>
-                <input type="text" value="" placeholder="Enter User name" name="username"><span class="error"><?php echo $usernameErr; ?></span>
-                <input type="password" value="" placeholder="Enter Password" name="passwd"><span class="error"><?php echo $passwdErr; ?></span>
-                <input type="password" value="" placeholder="Repeat Password" name="repasswd"><span class="error"><?php echo $repasswdErr; ?></span>
-                <br>
-                <hr>
+                Title:
+                <input type="text" name="title"><br>
+                First name:
+                <input type="text" name="firstName"><br>
+                Middle name:
+                <input type="text" name="midName"><br>
+                Last name:
+                <input type="text" name="lastName"><br>
+                Username:
+                <input type="text" name="username"><br>
+                Fan id:
+                <input type="text" name="fan"><br><span class="error"><?php echo $fanErr; ?></span>
+                Role:
+                <select name="role">
+                    <?php
+                    include 'DBconnect.php';
+                    $getCourse = "SELECT * FROM role";
+                    $result = $conn->query($getCourse) or die(mysqli_error());
+                    if ($result->num_rows > 0) {
+                        while ($row = mysqli_fetch_array($result)) {
+                            ?>
+                            <option value="<?php echo $row ['role_id'] ?>"><?php echo $row ['role_name'] ?></option>
+                            <?php
+                        }
+                    }
+                    $conn->close();
+                    ?></select><br>
                 <input type="submit" form="user_register" value="Register" name="register_submit" class="registerbtn">
             </form>
         </div>

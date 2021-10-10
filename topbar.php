@@ -1,4 +1,3 @@
-﻿<!DOCTYPE php>
 <?php
 date_default_timezone_set('Australia/Adelaide');
 include 'user_register_login.php';
@@ -23,12 +22,13 @@ include 'user_register_login.php';
     <body>
         <?php
         echo "<div class=\"topnav\" id=\"myTopnav\">";
+        echo "<img class='brand-image' src='img/logo-white.png' />";
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             echo "<a class=\"logout\" href=\"logout.php\">Logout</a>";
             if (basename($_SERVER['PHP_SELF']) == "QandA.php") {
-                echo "<a class=\"active\" href=\"QandA.php\">?</a>"; 
+                echo "<a class=\"active\" href=\"QandA.php\">?</a>";
             } else {
-                echo "<a class=\"QnA\" href=\"QandA.php\">?</a>"; 
+                echo "<a class=\"QnA\" href=\"QandA.php\">?</a>";
             }
             if (basename($_SERVER['PHP_SELF']) == "userDataPage.php") {
                 echo "<a class=\"active\" href=\"userDataPage.php\" class=\"username\">Welcome, " . $_SESSION["username"] . "</a></b>";

@@ -1,5 +1,6 @@
 <?php
 include 'topbar.php';
+include 'updateUserDetail.php';
 $today = date("Y-m-d");
 ?>
 <html>
@@ -11,111 +12,102 @@ $today = date("Y-m-d");
         <script type='text/javascript' src='js/dynamicpage.js'></script>
     </head>
     <body>
-        <div id="page-wrap">
-            <header>
-                <h1>Admin Panel</h1>
-                <nav>
-                    <ul class="group">
-                        <li><a href="editModules.php">Edit Modules</a></li>
-                        <li><a href="editUser.php">Edit User</a></li>
-                        <li><a href="viewMenu.php">Module Menu</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <section id="main-content">
-                <div id="guts">
-                    <body>
-                        <h1> User List</h1>
-
-                        <table>
-                            <tr>
-                                <th>Role</th>
-                                <th>Title</th>
-                                <th>First Name</th>
-                                <th>Middle date</th>
-                                <th>Family date</th>
-                                <th>Control</th>
-                            </tr>
-                            <?php
-                            if ($_SESSION["usertype"] == 1 || $_SESSION["usertype"] == 2) {
-                                include_once 'DBConnect.php';
-                                $sql = "SELECT * FROM users";
-                                $result = $conn->query($sql) or die(mysqli_error());
-
-                                if ($result->num_rows > 0) {
-                                    while ($row = mysqli_fetch_array($result)) {
-                                        ?>
-                                        <tr>
-                                        <form class="user_update" method="POST" action="updateUserDetail.php">
-                                            <?php
-                                            echo "<input type = 'hidden' name = 'UserID' value = '" . $row ['user_id'] . "'>";
+    <li><a href="editModules.php">Edit Modules</a></li>
+    <li><a href="editActivity.php">Edit Activities</a></li>
+    <li><a href="editUser.php">Edit User</a></li>
+    <h1> User List</h1>
+    <table>
+        <tr>
+            <th>Role</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Control</th>
+        </tr>
+        <?php
+        if (include 'DBConnect.php') {
+            $sql = "SELECT * FROM `users`";
+            $result = $conn->query($sql) or die(mysqli_error());
+            if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_array($result)) {
+                    $role_id = $row ['role_id'];
+                    $username = $row ['username'];
+                    $first_name = $row ['first_name'];
+                    $middle_name = $row ['middle_name'];
+                    $last_name = $row ['family_name'];
+                    $gender = $row ['gender'];
+                    $email_address = $row ['email_address'];
+                    $userID = $row ['user_id'];
+                    ?>
+                    <form method = "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <tr>
+                            <td> 
+                                <select name="role">
+                                    <?php
+                                    $getrole = "SELECT * FROM role";
+                                    $result1 = $conn->query($getrole) or die(mysqli_error());
+                                    if ($result1->num_rows > 0) {
+                                        while ($row = mysqli_fetch_array($result1)) {
                                             ?>
-                                            <td> <!<!-- Role -->
-                                                <?php
-                                                $role_id = $row ['role_id'];
-                                                if ($role_id == "1") {
-                                                    ?>
-                                                    <select name="role">
-                                                        <option value="1" selected>Topic Coordinator</option>
-                                                        <option value="2">Tutor</option>
-                                                        <option value="3">Student</option>
-                                                    </select>
-                                                <?php } else if ($role_id == "2") {
-                                                    ?>
-                                                    <select name="role">
-                                                        <option value="1">Topic Coordinator</option>
-                                                        <option value="2" selected>Tutor</option>
-                                                        <option value="3">Student</option>
-                                                    </select>
-                                                <?php } else if ($role_id == "3") {
-                                                    ?>
-                                                    <select name="role">
-                                                        <option value="1">Topic Coordinator</option>
-                                                        <option value="2">Tutor</option>
-                                                        <option value="3" selected>Student</option>
-                                                    </select>
-                                                <?php } ?>
-                                            </td>
-                                            <td><!-- title -->
-                                                <?php
-                                                echo $row['title'];
-                                                ?>
-                                            </td>
-                                            <td><!-- first name -->
-                                                <?php
-                                                echo $row['first_name'];
-                                                ?>
-                                            </td>
-                                            <td><!-- middle name -->
-                                                <?php
-                                                echo $row['middle_name'];
-                                                ?>
-                                            </td>
-                                            <td><!-- family name -->
-                                                <?php
-                                                echo $row['family_name'];
-                                                ?>
-                                            </td>
-                                            <td><!-- control -->
-                                                <?php echo "<input type = 'hidden' name = 'UserID' value = '" . $row['user_id'] . "'>"; ?>
-                                                <input type = "submit" name = "user_update" value="Update"></input>
-                                        </form>
-                                        <form class="user_delete" method="POST" action="updateUserDetail.php">
-                                            <?php echo "<input type = 'hidden' name = 'UserID' value = '" . $row['user_id'] . "'>"; ?>
-                                            <input type = "submit" name = "user_delete" value="Delete"></input>
-                                        </form>
-                                        </td>
-
-
-                                        </tr>
-                                        <?php
-                                    }}
-                                }
-                                ?>
-                        </table>
-                        <br>
-                </div>
-            </section>
-        </div>
-    </body>
+                                            <option value="<?php echo $row ['role_id'] ?>" <?php
+                                            if ($row ['role_id'] == $role_id) {
+                                                echo "selected";
+                                            }
+                                            ?>><?php echo $row ['role_name'] ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?></select>
+                            </td>  
+                            <td> <!-- user_name -->
+                                <input type='text' name='user_name' value ='<?php echo $username; ?>'>
+                            </td>
+                            <td> 
+                                <input type='text' name='firstName' value ='<?php echo $first_name; ?>'>
+                            </td>
+                            <td> 
+                                <input type='text' name='midName' value ='<?php echo $middle_name; ?>'>
+                            </td>
+                            <td> 
+                                <input type='text' name='lastName' value ='<?php echo $last_name; ?>'>
+                            </td>  
+                            <td> 
+                                <select name="gender">
+                                    <?php if ($gender == "M") { ?>
+                                        <option value="M" selected>M</option>
+                                        <option value="F">F</option>
+                                    <?php } elseif ($gender == "F") { ?>
+                                        <option value="M">M</option>
+                                        <option value="F" selected >F</option>
+                                    <?php } else { ?>
+                                        <option value="M">M</option>
+                                        <option value="F">F</option>
+                                    <?php } ?>
+                                </select>
+                            </td>  
+                            <td> 
+                                <input type='text' name='email' value ='<?php echo $email_address; ?>'>
+                            </td>  
+                            <td>
+                                <input type = 'hidden' name = 'userID' value = '<?php echo $userID; ?>'>
+                                <input type = "submit" name = "user_update" value="Update">
+                    </form>
+                    <form method = "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                        <input type = 'hidden' name = 'userID' value = '<?php echo $userID; ?>'>
+                        <input type = "submit" name = "user_delete" value="Delete">
+                    </form> 
+                </td>
+            </tr>
+            <?php
+        }
+    }
+    $conn->close();
+}
+?>
+</table>
+<br>
+</body>
 </html>

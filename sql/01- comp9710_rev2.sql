@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021 年 10 月 08 日 06:01
+-- 產生時間： 2021 年 10 月 10 日 10:49
 -- 伺服器版本： 10.4.18-MariaDB
 -- PHP 版本： 8.0.3
 
@@ -47,7 +47,8 @@ CREATE TABLE `activity` (
 INSERT INTO `activity` (`activity_id`, `module_id`, `activity_name`, `description`, `start_date`, `end_date`, `creted_date`, `created_by`, `last_modified_date`, `last_modified_by`) VALUES
 (1, 1, 'activity 1: open', 'activity description', '2021-01-01 00:00:00', '2021-12-31 00:00:00', '2021-09-21 14:47:55', '2', NULL, '2'),
 (2, 1, 'activity 2: open', 'activity description', '2021-01-01 00:00:00', '2021-12-31 00:00:00', '2021-09-21 14:47:55', '2', NULL, '2'),
-(3, 1, 'activity 3: close', 'activity description', '2021-01-01 00:00:00', '2021-03-31 00:00:00', '2021-09-21 14:47:55', '2', NULL, '2');
+(3, 1, 'activity 3: close', 'activity description', '2021-01-01 00:00:00', '2021-03-31 00:00:00', '2021-09-21 14:47:55', '2', NULL, '2'),
+(7, 1, 'as', 'as', '2021-10-14 00:00:00', '2021-10-15 00:00:00', '2021-10-10 10:29:40', 'admin', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -653,7 +654,7 @@ ALTER TABLE `vm_management`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `activity`
 --
 ALTER TABLE `activity`
-  MODIFY `activity_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activities', AUTO_INCREMENT=4;
+  MODIFY `activity_id` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activities', AUTO_INCREMENT=8;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `activity_grade`
@@ -701,7 +702,7 @@ ALTER TABLE `management`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `module`
 --
 ALTER TABLE `module`
-  MODIFY `module_id` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules', AUTO_INCREMENT=7;
+  MODIFY `module_id` int(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules', AUTO_INCREMENT=10;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `objective`
@@ -749,7 +750,7 @@ ALTER TABLE `test_question_answer`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all users', AUTO_INCREMENT=4;
+  MODIFY `user_id` int(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all users', AUTO_INCREMENT=20;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `user_manual_document`

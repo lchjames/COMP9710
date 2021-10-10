@@ -1,5 +1,10 @@
 <?php
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$today = date("Y-m-d H:i:s");
+$uploader = $_SESSION["username"];
 $date = "";
 $username = "";
 $Lusername = "";
@@ -7,117 +12,54 @@ $email = "";
 $passwd = "";
 $Lpasswd = "";
 $repasswd = "";
+$title = "";
+$first_name = "";
+$middle_name = "";
+$last_name = "";
+$fan = "";
+$role = "";
+
 $usernameErr = "";
 $LusernameErr = "";
 $emailErr = "";
 $passwdErr = "";
 $LpasswdErr = "";
 $repasswdErr = "";
+$fanErr = "";
+
 $allow_username_to_input = FALSE;
 $allow_email_to_input = FALSE;
 $allow_passwd_to_input = FALSE;
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+
 if (basename($_SERVER['PHP_SELF']) != "index.php" && $_SESSION["loggedin"] != true) {
     header("location: index.php");
 }
 
-//if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
-//    if (empty($_POST["username"])) {
-//        $usernameErr = "Username is required";
-//        $allow_username_to_input = FALSE;
-//    } else {
-//        $username = $_POST["username"];
-//        $allow_username_to_input = TRUE;
-//// check if name only contains letters and number
-//        if (!preg_match("/^[a-zA-Z0-9]+$/", $username)) {
-//            $usernameErr = "Only letters and number are allowed";
-//            $allow_username_to_input = FALSE;
-//        }
-//    }
-//    $passwd = $username;
-//    $email = $username . "@flinders.edu.au";
-//    /* if (empty($_POST["passwd"])) {
-//      $passwdErr = "Password is required";
-//      $allow_passwd_to_input = FALSE;
-//      }
-//      if (empty($_POST["repasswd"])) {
-//      $repasswdErr = "Please re-input password";
-//      } else {
-//      $passwd = $_POST["passwd"];
-//      $repasswd = $_POST["repasswd"];
-//      $allow_passwd_to_input = TRUE;
-//      // check if password only contains letters and number
-//      if (!preg_match("/^[a-zA-Z0-9]+$/", $passwd)) {
-//      $passwdErr = "Only letters and number are allowed";
-//      $allow_passwd_to_input = FALSE;
-//      }
-//      // check if name only contains letters and whitespace
-//      if ($passwd != $repasswd) {
-//      $passwdErr = "Password mismatch";
-//      $repasswdErr = "Password mismatch";
-//      $allow_passwd_to_input = FALSE;
-//      } */
-//    if ($allow_username_to_input == TRUE/* && $allow_passwd_to_input == TRUE */) {
-//        if (include 'DBConnect.php') {
-//            $sql = "SELECT username FROM users WHERE username='$username'";
-//            $result = $conn->query($sql);
-//            if ($result === FALSE) {
-//                echo "Error: " . $sql . "<br>" . $conn->error;
-//            } else if ($result->num_rows == 0) {
-//                $sql = "INSERT INTO users (username, password, email_address, user_id) VALUES ('$username', '" . md5($passwd) . "','$email','1')";
-//                if ($conn->query($sql) === FALSE) {
-//                    echo "Error: " . $sql . "<br>" . $conn->error;
-//                }
-//            } else {
-//                print "Username Used";
-//            }
-//            $sql = "SELECT username FROM user_account WHERE username='$username'";
-//            $result = $conn->query($sql);
-//            $row = mysqli_fetch_array($result);
-//            // Store data in session variables
-//            /* $_SESSION["loggedin"] = true;
-//              $_SESSION["username"] = $row ['username'];
-//              $_SESSION["usertype"] = $row ['usertype'];
-//              $_SESSION["userid"] = $row ['userID']; */
-//            // Redirect user
-//            /* if ($_SESSION["usertype"] == 'admin') {
-//              header("location: admin.php");
-//              } else
-//              header("location: user.php"); */
-//        }
-//        /* if (include 'DBConnect.php') {
-//          $sql = "SELECT * FROM user_account WHERE username='$username'";
-//          $result = $conn->query($sql);
-//          if ($result === FALSE) {
-//          echo "Error: " . $sql . "<br>" . $conn->error;
-//          } else {
-//          // Password is correct, so start a new session
-//          session_start();
-//          $row = mysqli_fetch_array($result);
-//          // Store data in session variables
-//          $_SESSION["loggedin"] = true;
-//          $_SESSION["username"] = $row ['username'];
-//          $_SESSION["usertype"] = $row ['user_type'];
-//          $_SESSION["userid"] = $row ['user_id'];
-//
-//          // Redirect user to activity page
-//          if ($_SESSION["usertype"] == 'admin') {
-//          header("location: admin.php");
-//          } else
-//          header("location: user.php");
-//          }
-//          if ($conn->query($sql) === FALSE) {
-//          echo "Error: " . $sql . "<br>" . $conn->error;
-//          }
-//          } else {
-//          $LusernameErr = "User not exists";
-//          }
-//          $conn->close(); */
-//    }
-//} else
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_submit'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
+    $title = $_POST['title'];
+    $first_name = $_POST['firstName'];
+    $middle_name = $_POST['midName'];
+    $last_name = $_POST['lastName'];
+    $username = $_POST['username'];
+    $fan = $_POST['fan'];
+    $role = $_POST['role'];
+    if ($fan != null) {
+        if (include 'DBConnect.php') {
+            $sql = "INSERT INTO `users`( `role_id`, `title`, `first_name`, `middle_name`, `family_name`, `username`, `password`, `FAN`, `creted_date`, `created_by`) "
+                    . "VALUES ('$role','$title','$first_name','$middle_name','$last_name','$username',md5('$fan'),'$fan','$today','$uploader')";
+            if ($conn->query($sql) === FALSE) {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            } else {
+                echo "User " . $username . "has been created.";
+            }
+            $conn->close();
+        }
+        header("location: http://localhost/COMP9710/adminPanel.php#editUser.php");
+    } else {
+        $fanErr = "FAN cannot be empty.";
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    }
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login_submit'])) {
     if (empty($_POST["Lusername"])) {
         $LusernameErr = "Username is required";
         $allow_username_to_input = FALSE;

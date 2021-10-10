@@ -4,7 +4,6 @@ session_start();
 $today = date("Y-m-d H:i:s");
 $uploader = $_SESSION["username"];
 $target_dir = "./video/";
-https://youtu.be/rvelwxuzwEE
 $target_file = $target_dir . basename($_FILES["videoToUpload"]["name"]);
 $link = substr($_POST['linkToUpload'], 17);
 $video_name = $_POST['videoName'];
