@@ -63,7 +63,7 @@ if ($uploadOk == 0 || empty($_POST["videoName"]) || empty($_POST["activity"])) {
         //echo $link;
         header("location: moduleManage.php");
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file. ";
     }
 }
 ?>

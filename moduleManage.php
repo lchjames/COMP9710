@@ -49,7 +49,12 @@ $state = "";
                                 $resultDocument = $conn->query($getDocument) or die(mysqli_error());
                                 if ($resultDocument->num_rows > 0) {
                                     while ($row = mysqli_fetch_array($resultDocument)) {
-                                        ?><p><a href="./pdf/<?php echo $row ['file_path'] ?>"><?php echo $row ['document_name']; ?></p><?php
+                                        ?><p><a href="./pdf/<?php echo $row ['file_path'] ?>"><?php echo $row ['document_name']; ?>
+                                                <form method="post" action="deleteDocVideo.php">
+                                                    <input  hidden value="<?php echo $row ['document_id'] ?>" name="document_id">
+                                                    <input  type="submit" name="document_delete" value="Delete">
+                                                </form>
+                                        </p><?php
                                     }
                                 }
                                 ?></td>
@@ -62,7 +67,8 @@ $state = "";
                                     }
                                 }
                                 ?></td> 
-                            <td><!-- Videos --><?php
+                            <td><!-- Videos -->
+                                <?php
                                 $getVideo = "SELECT * FROM video v, activity a WHERE v.activity_id = a.activity_id && a.module_id = $moduleID";
                                 $resultVideo = $conn->query($getVideo) or die(mysqli_error());
                                 if ($resultVideo->num_rows > 0) {
@@ -73,8 +79,16 @@ $state = "";
                                             ?><p><a href="./video/<?php echo $row ['file_path'] ?>"><?php echo $row ['video_name']; ?></a></p><?php
                                             }
                                         }
-                                    }
-                                    ?></td>
+                                        ?>
+                                    <form method = "post" action = "deleteDocVideo.php">
+                                        <input hidden value = "<?php echo $row['video_id']; ?>" name = "video_id">
+                                        <input type = "submit" name = "video_delete" value = "Delete">
+                                    </form>
+                                    <?php
+                                }
+                                ?>
+
+                            </td>
                             <td><!--State-->
                                 <?php echo $state; ?></td>
                         </form>
