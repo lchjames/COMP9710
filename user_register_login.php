@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
                 $_SESSION["username"] = $row ['username'];
                 $_SESSION["usertype"] = $row ['role_id'];
                 $_SESSION["userid"] = $row ['user_id'];
+                $_SESSION["load"] = "none";
             }
             if ($conn->query($sql) === FALSE) {
                 echo "Error: " . $sql . "<br>" . $conn->error;

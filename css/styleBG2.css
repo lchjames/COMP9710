@@ -86,10 +86,10 @@ button {
     font-size: 1.1rem;
     padding: 0;
 }
-.container .title{
+.title{
     background-color: #0068e3;
     color: #fff;
-    padding: 0;
+    padding: 10;
     font-size: 1.2rem;
     font-weight: 600;
 }

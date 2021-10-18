@@ -15,7 +15,7 @@
         </script>
     </head>
     <body>
-        <div class="container-fluid p-0 m-0" style="padding-top:51px !important">
+        <div class="container-fluid p-0 m-0" style=" padding-top:51px !important">
             <div class="row m-0">
                 <div class="col-12 col-md-4 split left p-0">
                     <section id="main-content">
@@ -27,7 +27,7 @@
                     </section>
                 </div><!-- Left -->
 
-                <div class="col-12 col-md-8 split right p-3">
+                <div class="col-12 col-md-8 split right">
                     <?php
                     include 'rightDashboard.php';
                     ?>

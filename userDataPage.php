@@ -1,6 +1,6 @@
 <?php
-include_once 'topbar.php';
-include'userDataFunction.php';
+include 'topbar.php';
+include 'userDataFunction.php';
 ?>
 <html>
     <head>
