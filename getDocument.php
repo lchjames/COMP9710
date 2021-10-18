@@ -8,12 +8,10 @@ $resultDocument = $conn->query($getDocument) or die(mysqli_error());
     if ($resultDocument->num_rows > 0) {
         while ($row = mysqli_fetch_array($resultDocument)) {
             ?>
-            <button class="collapsible"><?php echo $row ['document_name'] ?></button>
-            <div class="content">
-                <iframe src="pdf/<?php echo $row ['file_path'] ?>#zoom=100" width="100%" height="500px">
-                </iframe>
-            </div>
-
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="POST">
+                <input type = 'hidden' name = 'DocumentID' value = '<?php echo $row ['document_id']; ?>'>
+                <input type = "submit" name = "show_document" value="Show  <?php echo $row ['document_name'] ?>">
+            </form>
             <?php
         }
     } else {

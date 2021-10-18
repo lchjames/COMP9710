@@ -7,22 +7,12 @@ $resultVideo = $conn->query($getVideo) or die(mysqli_error());
     <?php
     if ($resultVideo->num_rows > 0) {
         while ($row = mysqli_fetch_array($resultVideo)) {
-            if ($row['video_type_id'] == 2) {
-                ?>
-                <p><?php echo $row ['video_name']; ?></p>
-                <video width="400" controls>
-                    <source src="video/<?php echo $row ['file_path']; ?>" type="video/mp4">
-                    Your browser does not support HTML video.
-                </video>
-                <br>
-                <?php
-            } elseif ($row['video_type_id'] == 1) {
-                ?>
-                <p><?php echo $row ['video_name']; ?></p>
-                <iframe width="400" height="315" src="https://www.youtube.com/embed/<?php echo $row['url_link'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <br>
-                <?php
-            }
+            ?>
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>"  method="POST">
+                <input type = 'hidden' name = 'VideoID' value = '<?php echo $row ['video_id']; ?>'>
+                <input type = "submit" name = "show_video" value="Show  <?php echo $row ['video_name'] ?>">
+            </form>
+            <?php
         }
     } else {
         ?>

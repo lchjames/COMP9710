@@ -7,8 +7,6 @@ $doc_link = "";
 $doc_name = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['select_activity'])) {
     $activityID = $_POST['activityID'];
-    echo $activityID;
-
     if (include 'DBConnect.php') {
         $sql = "SELECT * FROM `document` d ,`activity` a WHERE a.activity_id = $activityID AND d.activity_id = $activityID";
         $result = $conn->query($sql) or die(mysqli_error());
@@ -78,10 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['select_activity'])) {
     </div>
 
     <div class="split right">
-        <iframe src="http://23.96.45.10:6086/" id="kali"  width="100%" height="50%">
-        </iframe>
-        <iframe src="http://40.76.226.116:6085/" id="metasploitable "  width="100%" height="50%">
-        </iframe>
+        <a href="http://23.96.45.10:6090/">Full screen for Kali</a>
+        <iframe src="http://23.96.45.10:6090/" id="kali"  width="100%" height="50%"></iframe>
+        <a href="http://23.96.45.10:6086/">Full screen for Metasploitable</a>
+        <iframe src="http://23.96.45.10:6086/" id="metasploitable "  width="100%" height="50%"></iframe>
     </div>
 </body>
 </html> 

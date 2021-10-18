@@ -29,7 +29,7 @@
 
                 <div class="col-12 col-md-8 split right p-3">
                     <?php
-                    include 'showProcess.php';
+                    include 'rightDashboard.php';
                     ?>
                 </div>
             </div>
