@@ -71,7 +71,7 @@ td, th {
     padding: 8px;
 }
 tr:nth-child(odd) {
-/*    background-color: #a3deec;*/
+    /*    background-color: #a3deec;*/
 }
 tr:nth-child(even) {
     /*background-color: #B3ECA4;*/
@@ -79,12 +79,11 @@ tr:nth-child(even) {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url("../pic/BG.png"); 
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    margin:0;
-    padding:0;
+    padding-top:  25px;
+    margin: 0;
 }
 
 * {
@@ -93,7 +92,7 @@ body {
 
 /* style the container */
 .container {
-    position: absolute;
+    position: static;
     width: 100%;
     margin: auto;
     padding: 20px 0 30px 0;
@@ -107,6 +106,7 @@ body {
 
 /* style inputs and link buttons */
 input,.btn {
+    background: #dbdbdb;
     width: 100%;
     padding: 12px;
     border: none;
@@ -230,10 +230,11 @@ p.welcometxt{
     }
     body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: url("../pic/BG.png"); 
         background-repeat: no-repeat;
         background-size: cover;
         background-position: relative;
+        padding-top:  25px;
+        margin: 0;
     }
 
 }
@@ -242,10 +243,11 @@ p.welcometxt{
 @media screen and (max-width: 600px) {
     body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: url("../pic/BG.png"); 
         background-repeat: no-repeat;
         background-size: cover;
         background-position: relative;
+        padding-top:  25px;
+        margin: 0;
     }
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {

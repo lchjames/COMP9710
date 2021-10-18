@@ -8,7 +8,10 @@ $resultActivity = $conn->query($getActivity) or die(mysqli_error());
     if ($resultActivity->num_rows > 0) {
         while ($row = mysqli_fetch_array($resultActivity)) {
             ?>
-                <a href="lab.php">Start <?php echo $row ['activity_name'] ?></a>
+            <form action="lab.php"  method="POST">
+                <input type = 'hidden' name = 'activityID' value = '<?php echo $row ['activity_id']; ?>'>
+                <input type = "submit" name = "select_activity" value="Start  <?php echo $row ['activity_name'] ?>">
+            </form>
             <?php
         }
     } else {

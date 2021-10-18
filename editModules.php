@@ -45,7 +45,7 @@ $today = date("Y-m-d");
                                 $resultdate = $conn->query($sql) or die(mysqli_error());
                                 $startdate = date('Y-m-d', strtotime($row['start_date']));
                                 echo $startdate;
-                                ?>' min='<?php echo $today; ?>'>
+                                ?>' >
                             </td>
                             <td> <!-- end date -->
 

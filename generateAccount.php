@@ -1,16 +1,15 @@
 <html>
     <?php
-    include_once 'topbar.php';
+    include 'topbar.php';
     ?>
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/styleBG.css">
         <title>Generate Account</title>
+        <link rel="stylesheet" type="text/css" href="css/moduleManage.css"/>
     </head>
     <body>
         <div class="container">
             <form method="post" name="user_register_submit" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" autocomplete="off" id="user_register"> 
-                <h2>Generate Account</h2>
+                <div class="title">Insert a single user</div>
                 <br>
                 Title:
                 <input type="text" name="title"><br>
@@ -43,7 +42,9 @@
             </form>
         </div>
         <br>
+        OR
         <div class="container">
+            <div class="title">Insert the excel sheet</div>
             <form method="post" action="importCSV.php" enctype="multipart/form-data">
                 <input type="file" name="file"/>
                 <input type="submit" name="submit_file" value="Submit"/>

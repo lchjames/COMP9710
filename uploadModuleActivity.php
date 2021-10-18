@@ -1,6 +1,8 @@
 <?php
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $today = date("Y-m-d H:i:s");
 $uploader = $_SESSION["username"];
 $moduleName = "";

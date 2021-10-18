@@ -4,6 +4,7 @@
     ?>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-5.1.2-dist/css/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styleBG2.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script language="javascript" type="text/javascript">
@@ -14,20 +15,24 @@
         </script>
     </head>
     <body>
-        <div class="split left">
-            <section id="main-content">
-                <div id="guts">
+        <div class="container-fluid p-0 m-0" style="padding-top:51px !important">
+            <div class="row m-0">
+                <div class="col-12 col-md-4 split left p-0">
+                    <section id="main-content">
+                        <div id="guts">
+                            <?php
+                            include 'readModules.php';
+                            ?>
+                        </div>
+                    </section>
+                </div><!-- Left -->
+
+                <div class="col-12 col-md-8 split right p-3">
                     <?php
-                    include 'readModules.php';
+                    include 'showProcess.php';
                     ?>
                 </div>
-            </section>
-        </div><!-- Left -->
-
-        <div class="split right">
-            <?php
-            include 'showProcess.php';
-            ?>
+            </div>
         </div>
         <script>
             var coll = document.getElementsByClassName("collapsible");

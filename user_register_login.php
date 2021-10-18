@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $today = date("Y-m-d H:i:s");
-$uploader = $_SESSION["username"];
 $date = "";
 $username = "";
 $Lusername = "";
@@ -45,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
     $role = $_POST['role'];
     if ($fan != null) {
         if (include 'DBConnect.php') {
+            $uploader = $_SESSION["username"];
             $sql = "INSERT INTO `users`( `role_id`, `title`, `first_name`, `middle_name`, `family_name`, `username`, `password`, `FAN`, `creted_date`, `created_by`) "
                     . "VALUES ('$role','$title','$first_name','$middle_name','$last_name','$username',md5('$fan'),'$fan','$today','$uploader')";
             if ($conn->query($sql) === FALSE) {
