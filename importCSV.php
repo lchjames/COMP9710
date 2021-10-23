@@ -90,7 +90,8 @@ include 'topbar.php';
                 $student_id = $csv[7];
                 $fan = $csv[8];
                 $uploader = $_SESSION["username"];
-                $sql = "INSERT INTO users (title, first_name, middle_name, family_name, gender, username, password, email_address, student_id, FAN,creted_date, created_by, last_modified_date, last_modified_by) VALUES ('$title','$first_name','$middle_name','$family_name','$gender','$username','" . md5($username) . "','$email','$student_id','$fan','$today','$uploader','$today','$uploader')";
+                $sql = "INSERT INTO users (role_id, title, first_name, middle_name, family_name, gender, username, password, email_address, student_id, FAN,creted_date, created_by, last_modified_date, last_modified_by) "
+                        . "VALUES ('3','$title','$first_name','$middle_name','$family_name','$gender','$username','" . md5($username) . "','$email','$student_id','$fan','$today','$uploader','$today','$uploader')";
                 if ($conn->query($sql) === FALSE) {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
