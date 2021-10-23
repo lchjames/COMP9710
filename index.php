@@ -33,7 +33,7 @@
                         <img id="logo-image" src="img/logo.png" />
                     </div>
                     <h1>Welcome to Cybersecuity Labs!
-                        To obtain access, make sure you entrol to the topic and contact topic coordinators to activate
+                        To obtain access, make sure you enrol to the topic and contact topic coordinators to activate
                         your account.
                     </h1>
                     <form class="form-group" method="post" name="user_login_submit"
