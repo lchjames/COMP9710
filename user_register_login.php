@@ -44,15 +44,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register_submit'])) {
     $role = $_POST['role'];
     if ($fan != null) {
         if (include 'DBConnect.php') {
-            $uploader = $_SESSION["username"];
-            $sql = "INSERT INTO `users`( `role_id`, `title`, `first_name`, `middle_name`, `family_name`, `username`, `password`, `FAN`, `creted_date`, `created_by`) "
-                    . "VALUES ('$role','$title','$first_name','$middle_name','$last_name','$username',md5('$fan'),'$fan','$today','$uploader')";
-            if ($conn->query($sql) === FALSE) {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            } else {
-                echo "User " . $username . "has been created.";
+            $sql = "SELECT * FROM `users` WHERE `username` =  '$username'";
+            $result = $conn->query($sql) or die(mysqli_error());
+            if ($result->num_rows == 0) {
+                $uploader = $_SESSION["username"];
+                $sql = "INSERT INTO `users`( `role_id`, `title`, `first_name`, `middle_name`, `family_name`, `username`, `password`, `FAN`, `creted_date`, `created_by`, `email_address`) "
+                        . "VALUES ('$role','$title','$first_name','$middle_name','$last_name','$username',md5('$username'),'$fan','$today','$uploader','notset@flinders.edu.au')";
+                if ($conn->query($sql) === FALSE) {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                } else {
+                    echo "User " . $username . "has been created.";
+                }
+                $conn->close();
             }
-            $conn->close();
         }
         header("location: http://localhost/COMP9710/adminPanel.php#editUser.php");
     } else {

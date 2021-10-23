@@ -19,5 +19,5 @@ if (mysqli_connect_errno()) {
   printf("Current character set: %s\n", mysqli_character_set_name($conn));
   } */
 
-//$conn->close();
+////$conn->close();
 ?>
