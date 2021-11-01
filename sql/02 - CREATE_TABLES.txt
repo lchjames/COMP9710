@@ -1,0 +1,383 @@
+/* 
+REV: 3
+START DATE: 2021-OCT-19
+FINISH DATE: 2021-OCT-23 
+BY: Shinnapatt S
+#add1 - add two attribute "vm1_port" and "vm2_port" for table "users".
+#add2 - add comments (DATA DIRECTORY) to "vm1_port" and "vm2_port" for table "users".
+*/
+
+
+
+/* 
+REV: 2
+START DATE: 2021-SEP-20
+FINISH DATE: 2021-SEP-21 
+BY: Shinnapatt S
+#add1 - add comments (DATA DIRECTORY) to all attributes
+*/
+
+
+/* 
+REV: 1
+START DATE: 2021-SEP-06
+FINISH DATE: 2021-SEP-20 
+BY: Shinnapatt S
+#change1 - alter primary key data type from "char" to "int"
+#change2 - alter a data type of attribute "created_date" and "last_modified_date" from "DATE" to "DATETIME"
+#change3 - alter attribute : filepath's and url_link char value from "200" to "250"
+#change4 - alter a data type of attribute "start_date" and "end_date" of table "users" , "course" and "module"from "DATE" to "DATETIME"
+#change5 - alter a attribute name of a table "users" from "sex" to "gender"
+#change6 - alter attribute name from "assigned_date" to "created_date" and "assigned_by" to "created_by" from table "VM_management"
+#change7 - alter attribute type: "question_no" and "mark" of table "test_question"  and "activity_question" from "CHAR" to "INT"
+#change8 - alter attribute type: "attemp_no"  , "received_mark" of table "test_question_answer" and "activity_question_answer" from "CHAR" to "INT"
+#change9 - alter attribute type: "attemp_no" of table: "test_grade" and "activity_grade" from "CHAR" to "INT"
+#change10 - alter attribute value: multiple_answer1-4 of table: "test_question" and "activity_question" from "20" to "50" 
+#change11 - alter attribute value: multiple_answer of table: "test_question_answer" and "activity_question_answer" from "20" to "50"    
+#change12 - alter attribute type: "archive_status" of table: "course" from "CHAR" to "INT"
+#change13 - alter attribute CHAR value: "module_name" from "30" to "100"
+#change14 - alter attribute CHAR value: "role_name" from "10" to "20"
+#add1 - add "AUTO_INCREMEN" for all primary keys
+#add2 - add "DEFAULT CURRENT_TIMESTAMP" for attribute "created_date"
+#add3 - add "ON UPDATE CURRENT_TIMESTAMP" for attribute "last_modified_date"
+#add4 - add two attribute "last_modified_date" and "last_modified_by" for table "VM_management" and "virtual_machine"
+#add5 - add an attribute "screenshot_path" to table "test_question_answer"
+#add6 - add an attribute "user_id" to table "enrolment" and "management"
+#remove1 - remove video_type_name from table "video" 
+*/
+
+
+/*
+REV: 0
+START DATE: 2021-JUL-01
+FINISH DATE: 2021-JUL-26
+BY: Shinnapatt S
+#add1 - provide create table SQL command ###
+*/
+
+CREATE TABLE role(
+role_id int(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all roles',
+role_name CHAR(20) COMMENT 'Role name',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Role created date',
+created_by CHAR(6) COMMENT 'Role created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Role last modified date', 
+last_modified_by CHAR(6) COMMENT 'Role last modified by',
+PRIMARY KEY (role_id)
+);
+
+CREATE TABLE user_manual_document(
+document_id int(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all manual documents',
+role_id int(1) NOT NULL COMMENT 'Document types',
+document_name CHAR(30) COMMENT 'Document name',
+file_path CHAR(250) COMMENT 'Document file location',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Document created date',
+created_by CHAR(6) COMMENT 'Document created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Document last modified date', 
+last_modified_by CHAR(6) COMMENT 'Document last modified by',
+PRIMARY KEY (document_id),
+FOREIGN KEY (role_id) references role (role_id)
+);
+
+
+
+CREATE TABLE users (
+user_id INT(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all users',
+role_id INT(1) NOT NULL COMMENT 'User type',
+title CHAR(3) COMMENT 'User title',
+first_name CHAR(20) COMMENT 'User first name',
+middle_name CHAR (20) COMMENT 'User middle name',
+family_name CHAR (20) COMMENT 'User family name',
+gender CHAR(1) COMMENT 'User gender',
+username CHAR(20) COMMENT 'Username',
+password CHAR(32) COMMENT 'Password',
+email_address CHAR(30) COMMENT 'User email address',
+student_id CHAR(7) COMMENT 'Student ID or Staff ID',
+FAN CHAR(8) COMMENT 'FAN',
+vm1_port INT(5) COMMENT 'virtual machine port 1',
+vm2_port INT(5) COMMENT 'virtual machine port 2',
+start_date DATETIME COMMENT 'User start effective date',
+end_date DATETIME COMMENT 'User end effective date',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'User created date',
+created_by CHAR(6) COMMENT 'User created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'User last modified date', 
+last_modified_by CHAR(6) COMMENT 'User last modified by',
+PRIMARY KEY (user_id,role_id),
+FOREIGN KEY (role_id) references role (role_id)
+);
+
+
+
+CREATE TABLE course(
+course_id int(4) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all courses',
+course_key CHAR(10) COMMENT 'Course key',
+course_name CHAR(50) COMMENT 'Course name',
+description CHAR(50) COMMENT 'Course description',
+semester CHAR(1) COMMENT 'Semester',
+year CHAR(4) COMMENT 'Year',
+start_date DATETIME COMMENT 'Course start effective date',
+end_date DATETIME COMMENT 'Course end effective date',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Course created date',
+created_by CHAR(6) COMMENT 'Course created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Course last modified date', 
+last_modified_by CHAR(6) COMMENT 'Course last modified by',
+archive_status INT(1) COMMENT 'Archive status',
+PRIMARY KEY (course_id)
+);
+
+CREATE TABLE enrolment(
+enrol_id INT(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all enrolments',
+course_id INT(4) NOT NULL COMMENT 'A course that is enroled by users',
+user_id INT(6) NOT NULL COMMENT 'A user who enrol a course',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Enrolment created date',
+created_by CHAR(6) COMMENT 'Enrolment created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Enrolment last modified date', 
+last_modified_by CHAR(6) COMMENT 'Enrolment last modified by',
+PRIMARY KEY (enrol_id,course_id,user_id),
+FOREIGN KEY (course_id) references course (course_id),
+FOREIGN KEY (user_id) references users (user_id)
+);
+
+CREATE TABLE management(
+manage_id INT(10) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all managements',
+course_id INT(4) NOT NULL COMMENT 'A course that is managed by users',
+user_id INT(6) NOT NULL COMMENT 'A user who manage courses',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Management created date',
+created_by CHAR(6) COMMENT 'Management created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Management last modified date', 
+last_modified_by CHAR(6) COMMENT 'Management last modified by',
+PRIMARY KEY (manage_id,course_id,user_id),
+FOREIGN KEY (course_id) references course (course_id),
+FOREIGN KEY (user_id) references users (user_id)
+);
+
+
+CREATE TABLE virtual_machine(
+vm_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all managements',
+vm_name CHAR (20) COMMENT 'Virtual machine name',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Virtual machine created date',
+created_by CHAR(6) COMMENT 'Virtual machine created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Virtual machine last modified date', 
+last_modified_by CHAR(6) COMMENT 'Virtual machine last modified by',
+PRIMARY KEY (vm_id)
+);
+
+CREATE TABLE VM_management(
+vm_mng_id INT(5)  NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all VM managements',
+vm_id INT(5) NOT NULL COMMENT 'A VM that is assigned to a course',
+course_id INT(4) NOT NULL COMMENT 'A course for VMs',
+creted_date_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'VM management created date ',
+created_by CHAR(6) COMMENT 'VM management created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'VM management last modified date', 
+last_modified_by CHAR(6) COMMENT 'VM management last modified by',
+PRIMARY KEY (vm_mng_id,vm_id),
+FOREIGN KEY (vm_id) references virtual_machine (vm_id)
+);
+
+
+CREATE TABLE module(
+module_id INT(3) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all modules',
+course_id INT(4) NOT NULL COMMENT 'Course',
+module_name CHAR(100) COMMENT 'Module name',
+start_date DATETIME COMMENT 'Module start effective date',
+end_date DATETIME COMMENT 'Module end effective date',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Module created date',
+created_by CHAR(6) COMMENT 'Module created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Module last modified date', 
+last_modified_by CHAR(6) COMMENT 'Module last modified by',
+PRIMARY KEY (module_id,course_id),
+FOREIGN KEY (course_id) references course (course_id)
+);
+
+CREATE TABLE question_type(
+question_type_id INT(1) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all question type',
+question_type_name CHAR(15) COMMENT 'Question type name',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Question type created date',
+created_by CHAR(6) COMMENT 'Question type created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Question type last modified date', 
+last_modified_by CHAR(6) COMMENT 'Question type last modified by',
+PRIMARY KEY (question_type_id)
+);
+
+CREATE TABLE test(
+test_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all tests',
+module_id INT(3) NOT NULL COMMENT 'Module',
+test_name CHAR (30) COMMENT 'Test name',
+description CHAR(50) COMMENT 'Test description',
+start_date DATETIME COMMENT 'Test start effective date',
+end_date DATETIME COMMENT 'Test end effective date',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Test created date',
+created_by CHAR(6) COMMENT 'Test created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Test last modified date', 
+last_modified_by CHAR(6) COMMENT 'Test last modified by',
+PRIMARY KEY (test_id,module_id),
+FOREIGN KEY (module_id) references module (module_id)
+);
+
+CREATE TABLE test_question(
+test_question_id INT(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all test questions',
+question_no INT(3) COMMENT 'Test Question number',
+question CHAR(150) COMMENT 'Test Question',
+question_type_id INT(1) NOT NULL COMMENT 'Question type',
+multiple_answer1 CHAR(50) COMMENT 'First answer',
+multiple_answer2 CHAR(50) COMMENT 'Second answer',
+multiple_answer3 CHAR(50) COMMENT 'Third answer',
+multiple_answer4 CHAR(50) COMMENT 'Forth answer',
+multiple_correct_answer CHAR(50) COMMENT 'Correct answer',
+mark INT(2) COMMENT 'Test question score',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Test question created date',
+created_by CHAR(6) COMMENT 'Test question created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Test question last modified date', 
+last_modified_by CHAR(6) COMMENT 'Test question last modified by',
+PRIMARY KEY (test_question_id,question_type_id),
+FOREIGN KEY (question_type_id) references question_type (question_type_id)
+);
+
+CREATE TABLE test_question_answer(
+test_answer_id INT(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all test questions answer',
+test_question_id INT(6) NOT NULL COMMENT 'Test question',
+user_id INT(6) NOT NULL COMMENT 'A user who submit a answer',
+attemp_no INT(3) COMMENT 'Attempt number',
+multiple_answer CHAR(50) COMMENT 'Multiple answer',
+short_answer CHAR(100) COMMENT 'Short answer',
+long_answer CHAR(150) COMMENT 'Long answer',
+received_mark INT(2) COMMENT 'Recevied mark',
+answered_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Answer date',
+review_by CHAR(6) COMMENT 'A user who review this answer and provide an answer score',
+review_date DATETIME COMMENT 'Answer review date',
+PRIMARY KEY (test_answer_id,test_question_id,user_id),
+FOREIGN KEY (test_question_id) references test_question (test_question_id),
+FOREIGN KEY (user_id) references users (user_id)
+);
+
+CREATE TABLE test_grade(
+test_grade_id INT (10) NOT NUll AUTO_INCREMENT COMMENT 'Unique number ID for all test grades',
+user_id INT(6) NOT NULL COMMENT 'A user who receive grades',
+test_id INT(5) NOT NULL COMMENT 'A test done by a user',
+total_mark int(5) COMMENT 'A test question total mark',
+total_received_mark int(5) COMMENT 'A total received mark',
+attemp_no INT(3) COMMENT 'Attempt number',
+PRIMARY KEY (test_grade_id,user_id,test_id),
+FOREIGN KEY (user_id) references users (user_id),
+FOREIGN KEY (test_id) references test (test_id)
+);
+
+CREATE TABLE activity(
+activity_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activities',
+module_id INT(3) NOT NULL COMMENT 'Module',
+activity_name CHAR (30) COMMENT 'Activity name',
+description CHAR(50) COMMENT 'Activity description',
+start_date DATETIME COMMENT 'Activity start effective date',
+end_date DATETIME COMMENT 'Activity end effective date',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Activity created date',
+created_by CHAR(6) COMMENT 'Activity created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Activity last modified date', 
+last_modified_by CHAR(6) COMMENT 'Activity last modified by',
+PRIMARY KEY (activity_id,module_id),
+FOREIGN KEY (module_id) references module (module_id)
+);
+
+CREATE TABLE objective(
+objective_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all objective',
+activity_id INT(5) NOT NULL COMMENT 'Activity',
+description CHAR(50) COMMENT 'Activity Objective description',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Activity Objective created date',
+created_by CHAR(6) COMMENT 'Activity Objective created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Activity objective last modified date', 
+last_modified_by CHAR(6) COMMENT 'Activity objective last modified by',
+PRIMARY KEY (objective_id,activity_id),
+FOREIGN KEY (activity_id) references activity (activity_id)
+);
+
+CREATE TABLE document(
+document_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all documents',
+activity_id INT(5) NOT NULL COMMENT 'Activity',
+document_name CHAR(50) COMMENT 'Document name',
+description CHAR(50) COMMENT 'Document description',
+file_path CHAR(250) COMMENT 'Document fie location',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Document created date',
+created_by CHAR(6) COMMENT 'Document created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Document last modified date', 
+last_modified_by CHAR(6) COMMENT 'Document last modified by',
+PRIMARY KEY (document_id,activity_id),
+FOREIGN KEY (activity_id) references activity (activity_id)
+);
+
+CREATE TABLE video_type(
+video_type_id INT(1) AUTO_INCREMENT COMMENT 'Unique number ID for all video types',
+video_type_name CHAR(15) COMMENT 'Video type name',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Video type created date',
+created_by CHAR(6) COMMENT 'Video type created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Video type last modified date', 
+last_modified_by CHAR(6) COMMENT 'Video type last modified by',
+PRIMARY KEY (video_type_id)
+);
+
+CREATE TABLE video(
+video_id INT(5) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all videos',
+video_type_id INT(1) NOT NULL COMMENT 'Video type',
+activity_id INT(5) NOT NULL COMMENT 'Activity',
+video_name CHAR(50) COMMENT 'Video name',
+description CHAR(50) COMMENT 'Video description',
+file_path CHAR(200) COMMENT 'Video file location',
+url_link CHAR(200) COMMENT 'Video URL link',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Video creted date',
+created_by CHAR(6) COMMENT 'Video created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Video last modified date', 
+last_modified_by CHAR(6) COMMENT 'Video last modified by',
+PRIMARY KEY (video_id,activity_id,video_type_id),
+FOREIGN KEY (activity_id) references activity (activity_id),
+FOREIGN KEY (video_type_id) references video_type (video_type_id)
+);
+
+CREATE TABLE activity_question(
+activity_question_id INT(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activity questions',
+activity_id INT(5) NOT NULL COMMENT 'Activity',
+question_no INT(3) COMMENT 'Question number',
+question CHAR(150) COMMENT 'Question',
+question_type_id INT(1) NOT NULL COMMENT 'Question type',
+multiple_answer1 CHAR(50) COMMENT 'First answer',
+multiple_answer2 CHAR(50) COMMENT 'Second answer',
+multiple_answer3 CHAR(50) COMMENT 'Third answer',
+multiple_answer4 CHAR(50) COMMENT 'Forth answer',
+multiple_correct_answer CHAR(50) COMMENT 'Correct answer',
+mark INT(2) COMMENT 'Question score',
+creted_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Question created date',
+created_by CHAR(6) COMMENT 'Question created by',
+last_modified_date DATETIME ON UPDATE CURRENT_TIMESTAMP COMMENT 'Question last modified date', 
+last_modified_by CHAR(6) COMMENT 'Question last modified by',
+PRIMARY KEY (activity_question_id,question_type_id,activity_id),
+FOREIGN KEY (question_type_id) references question_type (question_type_id),
+FOREIGN KEY (activity_id) references activity (activity_id)
+);
+
+
+CREATE TABLE activity_question_answer(
+activity_answer_id INT(6) NOT NULL AUTO_INCREMENT COMMENT 'Unique number ID for all activity question answer',
+activity_question_id INT(6) NOT NULL COMMENT 'Activity question',
+user_id INT(6) NOT NULL COMMENT 'A user who submit a answer',
+attemp_no INT(3) COMMENT 'Attempt number',
+multiple_answer CHAR(50) COMMENT 'Multiple answer',
+short_answer CHAR(100) COMMENT 'Short answer',
+long_answer CHAR(150) COMMENT 'Long answer',
+screenshot_path CHAR (250) COMMENT 'Screenshot file location',
+received_mark INT(2) COMMENT 'Received mark',
+answered_date DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Answer date',
+review_by CHAR(6) COMMENT 'A user who review this answer and provide an answer score',
+review_date DATETIME COMMENT 'Answer review date',
+PRIMARY KEY (activity_answer_id,activity_question_id,user_id),
+FOREIGN KEY (activity_question_id) references activity_question (activity_question_id),
+FOREIGN KEY (user_id) references users (user_id)
+);
+
+CREATE TABLE activity_grade(
+activity_grade_id INT(10) NOT NUll AUTO_INCREMENT COMMENT 'Unique number ID for all activity grades',
+user_id INT(6) NOT NULL COMMENT 'A user who receive grades',
+activity_id INT(5) NOT NULL COMMENT 'An activity done by user',
+total_mark int(5) COMMENT 'A activity question total mark',
+total_received_mark int(5) COMMENT 'A total received mark',
+attemp_no INT(3) COMMENT 'Attempt number',
+PRIMARY KEY (activity_grade_id,user_id,activity_id),
+FOREIGN KEY (user_id) references users (user_id),
+FOREIGN KEY (activity_id) references activity (activity_id)
+);
+
